@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POLYMARKET BTC SIGNAL BOT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:      #00ff41;
+    --green-dim:  #00cc33;
+    --green-dark: #003311;
+    --red:        #ff3333;
+    --yellow:     #ffcc00;
+    --cyan:       #00ffff;
+    --bg:         #0a0a0a;
+    --panel:      #0d1a0d;
+    --border:     #1a3a1a;
+    --text-dim:   #336633;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--green);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.08) 2px,
+      rgba(0,0,0,0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* Subtle flicker */
+  @keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.97; }
+    97% { opacity: 1; }
+    98% { opacity: 0.95; }
+  }
+  body { animation: flicker 8s infinite; }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 12px; }
+
+  /* ── HEADER ─────────────────────────────────────────────────────── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--green-dim);
+    background: var(--panel);
+    padding: 8px 16px;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 3px;
+    color: var(--green);
+    text-shadow: 0 0 10px var(--green);
+  }
+
+  .logo span { color: var(--cyan); }
+
+  .header-stats {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+  }
+
+  .stat-item { display: flex; flex-direction: column; align-items: center; }
+  .stat-label { color: var(--text-dim); font-size: 10px; letter-spacing: 1px; }
+  .stat-value { font-size: 15px; font-weight: bold; }
+  .stat-value.price { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+  .stat-value.up    { color: var(--green); }
+  .stat-value.down  { color: var(--red); }
+  .stat-value.warn  { color: var(--yellow); }
+
+  .feed-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .dot.live {
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  .timestamp { color: var(--text-dim); font-size: 11px; }
+
+  /* ── GRID ───────────────────────────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    grid-template-rows: auto auto;
+    gap: 10px;
+  }
+
+  /* ── PANELS ─────────────────────────────────────────────────────── */
+  .panel {
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .panel-title {
+    background: var(--green-dark);
+    border-bottom: 1px solid var(--border);
+    padding: 5px 12px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--green-dim);
+  }
+
+  .panel-body { padding: 10px 12px; }
+
+  /* ── SIGNAL TABLE ────────────────────────────────────────────────── */
+  .signal-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .signal-table th {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    padding: 4px 8px;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  .signal-table td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #111;
+    vertical-align: middle;
+  }
+
+  .signal-name { color: var(--green); letter-spacing: 0.5px; }
+  .wl          { color: #888; font-size: 12px; }
+  .rate-good   { color: var(--green); }
+  .rate-bad    { color: var(--red); }
+  .modifier    { color: var(--cyan); }
+
+  /* Accuracy bar */
+  .bar-wrap {
+    width: 100%;
+    height: 12px;
+    background: #111;
+    border-radius: 2px;
+    overflow: hidden;
+    min-width: 120px;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+  .bar-fill.good { background: var(--green); box-shadow: 0 0 4px var(--green); }
+  .bar-fill.bad  { background: var(--red);   box-shadow: 0 0 4px var(--red); }
+
+  /* ── SIGNAL SIDEBAR ──────────────────────────────────────────────── */
+  .signal-card {
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #0a120a;
+  }
+
+  .signal-card .direction {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+  }
+  .direction.Up   { color: var(--green); text-shadow: 0 0 12px var(--green); }
+  .direction.Down { color: var(--red);   text-shadow: 0 0 12px var(--red); }
+  .direction.NoEdge { color: var(--text-dim); }
+
+  .signal-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    font-size: 11px;
+  }
+  .signal-row .label { color: var(--text-dim); }
+  .signal-row .value { color: var(--green); }
+
+  /* Edge meter */
+  .edge-meter {
+    margin-top: 8px;
+    height: 6px;
+    background: #111;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .edge-fill {
+    height: 100%;
+    background: var(--cyan);
+    box-shadow: 0 0 6px var(--cyan);
+    transition: width 0.5s ease;
+  }
+
+  /* CVD bars */
+  .cvd-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-size: 11px;
+  }
+  .cvd-label { color: var(--text-dim); width: 40px; }
+  .cvd-bar-wrap {
+    flex: 1;
+    height: 10px;
+    background: #111;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cvd-bar {
+    position: absolute;
+    top: 0; height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease, left 0.4s ease;
+  }
+  .cvd-bar.buy  { background: var(--green); left: 50%; }
+  .cvd-bar.sell { background: var(--red);   right: 50%; }
+  .cvd-val { color: var(--green); width: 50px; text-align: right; }
+
+  /* ── POSITIONS ───────────────────────────────────────────────────── */
+  .pos-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .pos-table th {
+    font-size: 10px; letter-spacing: 1px;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+    padding: 4px 8px; text-align: left;
+    font-weight: normal;
+  }
+  .pos-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #111;
+    font-size: 12px;
+  }
+
+  .dir-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border: 1px solid;
+    font-size: 11px;
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 1px;
+  }
+  .dir-badge.Up   { border-color: var(--green); color: var(--green); }
+  .dir-badge.Down { border-color: var(--red);   color: var(--red); }
+
+  .eta-countdown { color: var(--yellow); }
+  .no-pos { color: var(--text-dim); padding: 12px 8px; font-size: 12px; }
+
+  /* ── P&L ─────────────────────────────────────────────────────────── */
+  .pnl-positive { color: var(--green); }
+  .pnl-negative { color: var(--red); }
+  .pnl-zero     { color: var(--text-dim); }
+
+  /* ── RECENT ──────────────────────────────────────────────────────── */
+  .recent-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid #111;
+    font-size: 11px;
+  }
+  .recent-item:last-child { border-bottom: none; }
+  .result-icon { font-size: 14px; }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────── */
+  .footer {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">POLY<span>SIGNAL</span> // BTC 5M</div>
+
+    <div class="header-stats">
+      <div class="stat-item">
+        <span class="stat-label">BTC PRICE</span>
+        <span class="stat-value price" id="btc-price">—</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">FUNDING</span>
+        <span class="stat-value" id="funding-rate">—</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">BASIS</span>
+        <span class="stat-value" id="perp-basis">—</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">WIN RATE</span>
+        <span class="stat-value" id="win-rate">—</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">PAPER P&L</span>
+        <span class="stat-value" id="total-pnl">—</span>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+      <div class="feed-status">
+        <div class="dot" id="feed-dot"></div>
+        <span id="feed-label">CONNECTING...</span>
+      </div>
+      <span class="timestamp" id="timestamp">—</span>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="grid">
+
+    <!-- LEFT: Signal accuracy table -->
+    <div>
+      <div class="panel">
+        <div class="panel-title">SIGNAL ACCURACY // LEARNING</div>
+        <div class="panel-body">
+          <table class="signal-table">
+            <thead>
+              <tr>
+                <th>SIGNAL</th>
+                <th>W/L</th>
+                <th>RATE</th>
+                <th>MODIFIER</th>
+                <th style="width:40%">ACCURACY</th>
+              </tr>
+            </thead>
+            <tbody id="signal-tbody">
+              <tr><td colspan="5" style="color:#333; padding:12px">Loading signals...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Positions -->
+      <div class="panel" style="margin-top:10px;">
+        <div class="panel-title">ACTIVE POSITIONS</div>
+        <div class="panel-body">
+          <table class="pos-table">
+            <thead>
+              <tr>
+                <th>MARKET</th>
+                <th>DIR</th>
+                <th>BET</th>
+                <th>CONF</th>
+                <th>EDGE</th>
+                <th>ENTRY</th>
+                <th>ETA</th>
+              </tr>
+            </thead>
+            <tbody id="pos-tbody">
+              <tr><td colspan="7" class="no-pos">No active positions</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Current signal + CVD + Recent -->
+    <div>
+
+      <!-- Current prediction -->
+      <div class="panel">
+        <div class="panel-title">CURRENT PREDICTION</div>
+        <div class="panel-body">
+          <div class="signal-card">
+            <div class="direction NoEdge" id="pred-direction">SCANNING...</div>
+
+            <div class="signal-row">
+              <span class="label">MODEL PROB</span>
+              <span class="value" id="pred-prob">—</span>
+            </div>
+            <div class="signal-row">
+              <span class="label">MKT IMPLIED</span>
+              <span class="value" id="pred-implied">—</span>
+            </div>
+            <div class="signal-row">
+              <span class="label">EDGE</span>
+              <span class="value" id="pred-edge">—</span>
+            </div>
+            <div class="signal-row">
+              <span class="label">CONFIDENCE</span>
+              <span class="value" id="pred-conf">—</span>
+            </div>
+
+            <div style="margin-top:8px; font-size:10px; color:#444;">EDGE STRENGTH</div>
+            <div class="edge-meter">
+              <div class="edge-fill" id="edge-fill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CVD bars -->
+      <div class="panel" style="margin-top:10px;">
+        <div class="panel-title">CVD // VOLUME DELTA</div>
+        <div class="panel-body">
+          <div class="cvd-item">
+            <span class="cvd-label">1 MIN</span>
+            <div class="cvd-bar-wrap">
+              <div class="cvd-bar buy"  id="cvd-1m-bar"  style="width:0%"></div>
+            </div>
+            <span class="cvd-val" id="cvd-1m-val">0.000</span>
+          </div>
+          <div class="cvd-item">
+            <span class="cvd-label">3 MIN</span>
+            <div class="cvd-bar-wrap">
+              <div class="cvd-bar buy"  id="cvd-3m-bar"  style="width:0%"></div>
+            </div>
+            <span class="cvd-val" id="cvd-3m-val">0.000</span>
+          </div>
+          <div style="margin-top:8px; font-size:10px; color:#444;">
+            Positive = net buying pressure → Up signal
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent outcomes -->
+      <div class="panel" style="margin-top:10px;">
+        <div class="panel-title">RECENT OUTCOMES</div>
+        <div class="panel-body" id="recent-panel">
+          <div style="color:#333; font-size:11px;">No resolved positions yet</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>POLYSIGNAL v1.0 // PAPER TRADING MODE // SIGNALS ONLY</span>
+    <span>Refreshes every 5s · All positions are paper only · No real money</span>
+  </div>
+
+</div>
+
+<script>
+const now = () => new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+
+async function refresh() {
+  try {
+    const res  = await fetch('/api/state');
+    const data = await res.json();
+    if (data.error) return;
+
+    document.getElementById('timestamp').textContent = now();
+
+    // Feed status
+    const dot   = document.getElementById('feed-dot');
+    const label = document.getElementById('feed-label');
+    if (data.feed_ok) {
+      dot.classList.add('live');
+      label.textContent = 'LIVE';
+      label.style.color = '#00ff41';
+    } else {
+      dot.classList.remove('live');
+      label.textContent = 'DISCONNECTED';
+      label.style.color = '#ff3333';
+    }
+
+    // Header stats
+    document.getElementById('btc-price').textContent =
+      data.btc_price ? '$' + data.btc_price.toLocaleString() : '—';
+
+    const fundEl = document.getElementById('funding-rate');
+    fundEl.textContent = data.funding_rate !== undefined
+      ? data.funding_rate.toFixed(5) + '%' : '—';
+    fundEl.className = 'stat-value ' +
+      (data.funding_rate > 0.005 ? 'down' : data.funding_rate < -0.005 ? 'up' : '');
+
+    const basisEl = document.getElementById('perp-basis');
+    basisEl.textContent = data.perp_basis !== undefined
+      ? data.perp_basis.toFixed(5) + '%' : '—';
+    basisEl.className = 'stat-value ' +
+      (data.perp_basis > 0.002 ? 'up' : data.perp_basis < -0.002 ? 'down' : '');
+
+    const wr = document.getElementById('win-rate');
+    wr.textContent = data.win_rate ? data.win_rate.toFixed(1) + '%' : '—';
+    wr.className   = 'stat-value ' + (data.win_rate >= 55 ? 'up' : data.win_rate > 0 ? 'warn' : '');
+
+    const pnlEl = document.getElementById('total-pnl');
+    const pnl   = data.total_pnl || 0;
+    pnlEl.textContent = '$' + pnl.toFixed(2);
+    pnlEl.className   = 'stat-value ' +
+      (pnl > 0 ? 'pnl-positive' : pnl < 0 ? 'pnl-negative' : 'pnl-zero');
+
+    // Signal table
+    const tbody = document.getElementById('signal-tbody');
+    if (data.trackers && data.trackers.length) {
+      tbody.innerHTML = data.trackers.map(t => {
+        const rateClass = t.rate >= 50 ? 'rate-good' : 'rate-bad';
+        const barClass  = t.rate >= 50 ? 'good' : 'bad';
+        const barPct    = Math.min(t.rate, 100).toFixed(1);
+        return `<tr>
+          <td class="signal-name">${t.name}</td>
+          <td class="wl">${t.wins}/${t.total}</td>
+          <td class="${rateClass}">${t.rate.toFixed(1)}%</td>
+          <td class="modifier">${t.weight.toFixed(2)}x</td>
+          <td>
+            <div class="bar-wrap">
+              <div class="bar-fill ${barClass}" style="width:${barPct}%"></div>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    // Prediction panel
+    const p = data.prediction;
+    if (p && p.direction) {
+      const dirEl = document.getElementById('pred-direction');
+      dirEl.textContent  = p.direction === 'NoEdge' ? 'NO EDGE' : p.direction.toUpperCase();
+      dirEl.className    = 'direction ' + p.direction;
+
+      document.getElementById('pred-prob').textContent =
+        (p.prob_up * 100).toFixed(1) + '%';
+      document.getElementById('pred-implied').textContent =
+        (p.market_implied * 100).toFixed(1) + '%';
+      document.getElementById('pred-edge').textContent =
+        '+' + (p.edge * 100).toFixed(1) + '%';
+      document.getElementById('pred-conf').textContent =
+        (p.confidence * 100).toFixed(1) + '%';
+
+      const edgePct = Math.min(p.edge / 0.15 * 100, 100);
+      document.getElementById('edge-fill').style.width = edgePct + '%';
+    }
+
+    // CVD bars
+    function setCvdBar(id, valId, val) {
+      const bar = document.getElementById(id);
+      const valEl = document.getElementById(valId);
+      const pct   = Math.min(Math.abs(val) * 50, 50);  // max 50% from center
+      valEl.textContent  = val.toFixed(4);
+      valEl.style.color  = val > 0 ? '#00ff41' : '#ff3333';
+      bar.style.width    = pct + '%';
+      if (val >= 0) {
+        bar.className = 'cvd-bar buy';
+        bar.style.left  = '50%';
+        bar.style.right = '';
+      } else {
+        bar.className = 'cvd-bar sell';
+        bar.style.right = '50%';
+        bar.style.left  = '';
+      }
+    }
+    setCvdBar('cvd-1m-bar', 'cvd-1m-val', data.cvd_1m || 0);
+    setCvdBar('cvd-3m-bar', 'cvd-3m-val', data.cvd_3m || 0);
+
+    // Active positions
+    const posTbody = document.getElementById('pos-tbody');
+    if (data.positions && data.positions.length) {
+      posTbody.innerHTML = data.positions.map(p => `<tr>
+        <td style="max-width:220px; overflow:hidden;">${p.question}</td>
+        <td><span class="dir-badge ${p.direction}">${p.direction}</span></td>
+        <td>$${p.bet.toFixed(2)}</td>
+        <td>${(p.confidence * 100).toFixed(1)}%</td>
+        <td>+${(p.edge * 100).toFixed(1)}%</td>
+        <td>$${p.entry.toLocaleString()}</td>
+        <td class="eta-countdown">${p.eta}</td>
+      </tr>`).join('');
+    } else {
+      posTbody.innerHTML = '<tr><td colspan="7" class="no-pos">No active positions — watching for edge...</td></tr>';
+    }
+
+    // Recent outcomes
+    const recentPanel = document.getElementById('recent-panel');
+    if (data.recent && data.recent.length) {
+      recentPanel.innerHTML = data.recent.slice().reverse().map(r => `
+        <div class="recent-item">
+          <span class="result-icon">${r.won ? '✅' : '❌'}</span>
+          <span class="dir-badge ${r.direction}" style="font-size:10px;">${r.direction}</span>
+          <span style="color:#888; flex:1; overflow:hidden;">${r.question}</span>
+          <span style="color:#555;">${(r.confidence*100).toFixed(0)}%</span>
+        </div>
+      `).join('');
+    }
+
+  } catch(e) {
+    console.warn('Refresh error:', e);
+  }
+}
+
+refresh();
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>
