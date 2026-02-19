@@ -1,0 +1,1042 @@
+19:57:15 [INFO] main: ============================================================
+19:57:15 [INFO] main:   POLYMARKET BTC SIGNAL BOT
+19:57:15 [INFO] main:   Paper trading mode — signals only
+19:57:15 [INFO] main: ============================================================
+19:57:15 [INFO] core.logger: Created logs/signals.csv
+19:57:15 [INFO] core.logger: Created logs/outcomes.csv
+19:57:15 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+19:57:15 [INFO] core.feed: BinanceFeed started
+19:57:15 [INFO] core.feed: RestPoller started
+19:57:15 [INFO] web.dashboard: Dashboard running at http://localhost:5000
+19:57:15 [INFO] main: Waiting 8s for WebSocket to fill with data...
+19:57:16 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.163.193:5000
+19:57:16 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+19:57:23 [INFO] main: Starting main loop (ticking every 10s)
+19:57:23 [WARNING] main: WebSocket not connected — skipping tick
+19:57:33 [WARNING] main: WebSocket not connected — skipping tick
+19:57:43 [WARNING] main: WebSocket not connected — skipping tick
+19:57:45 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+19:57:45 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+19:57:45 [WARNING] core.feed: WebSocket closed: None None
+19:57:45 [INFO] core.feed: Reconnecting in 3s...
+19:57:48 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+19:57:53 [WARNING] main: WebSocket not connected — skipping tick
+19:58:03 [WARNING] main: WebSocket not connected — skipping tick
+19:58:08 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:08] "GET / HTTP/1.1" 200 -
+19:58:09 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:09] "GET /api/state HTTP/1.1" 200 -
+19:58:09 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:09] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+19:58:13 [WARNING] main: WebSocket not connected — skipping tick
+19:58:14 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:14] "GET /api/state HTTP/1.1" 200 -
+19:58:15 [WARNING] core.feed: REST poll failed: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /fapi/v1/premiumIndex?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='api.binance.com', port=443): Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+19:58:18 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+19:58:18 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+19:58:18 [WARNING] core.feed: WebSocket closed: None None
+19:58:18 [INFO] core.feed: Reconnecting in 3s...
+19:58:19 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:19] "GET /api/state HTTP/1.1" 200 -
+19:58:21 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+19:58:23 [WARNING] main: WebSocket not connected — skipping tick
+19:58:24 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:24] "GET /api/state HTTP/1.1" 200 -
+19:58:29 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:29] "GET /api/state HTTP/1.1" 200 -
+19:58:33 [WARNING] main: WebSocket not connected — skipping tick
+19:58:34 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:34] "GET /api/state HTTP/1.1" 200 -
+19:58:39 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:39] "GET /api/state HTTP/1.1" 200 -
+19:58:43 [WARNING] main: WebSocket not connected — skipping tick
+19:58:44 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:44] "GET /api/state HTTP/1.1" 200 -
+19:58:49 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:49] "GET /api/state HTTP/1.1" 200 -
+19:58:51 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+19:58:51 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+19:58:51 [WARNING] core.feed: WebSocket closed: None None
+19:58:51 [INFO] core.feed: Reconnecting in 3s...
+19:58:53 [WARNING] main: WebSocket not connected — skipping tick
+19:58:54 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:54] "GET /api/state HTTP/1.1" 200 -
+19:58:54 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+19:58:59 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:58:59] "GET /api/state HTTP/1.1" 200 -
+19:59:03 [WARNING] main: WebSocket not connected — skipping tick
+19:59:04 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:04] "GET /api/state HTTP/1.1" 200 -
+19:59:09 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:09] "GET /api/state HTTP/1.1" 200 -
+19:59:13 [WARNING] main: WebSocket not connected — skipping tick
+19:59:14 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:14] "GET /api/state HTTP/1.1" 200 -
+19:59:19 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:19] "GET /api/state HTTP/1.1" 200 -
+19:59:23 [WARNING] main: WebSocket not connected — skipping tick
+19:59:24 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:24] "GET /api/state HTTP/1.1" 200 -
+19:59:24 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+19:59:24 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+19:59:24 [WARNING] core.feed: WebSocket closed: None None
+19:59:24 [INFO] core.feed: Reconnecting in 3s...
+19:59:27 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+19:59:29 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:29] "GET /api/state HTTP/1.1" 200 -
+19:59:33 [WARNING] main: WebSocket not connected — skipping tick
+19:59:34 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:34] "GET /api/state HTTP/1.1" 200 -
+19:59:39 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:39] "GET /api/state HTTP/1.1" 200 -
+19:59:43 [WARNING] main: WebSocket not connected — skipping tick
+19:59:44 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:44] "GET /api/state HTTP/1.1" 200 -
+19:59:45 [WARNING] core.feed: REST poll failed: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /fapi/v1/premiumIndex?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='api.binance.com', port=443): Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+19:59:50 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:50] "GET /api/state HTTP/1.1" 200 -
+19:59:53 [WARNING] main: WebSocket not connected — skipping tick
+19:59:55 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:55] "GET /api/state HTTP/1.1" 200 -
+19:59:57 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+19:59:57 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+19:59:57 [WARNING] core.feed: WebSocket closed: None None
+19:59:57 [INFO] core.feed: Reconnecting in 3s...
+19:59:59 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:59] "GET / HTTP/1.1" 200 -
+19:59:59 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:59] "GET /api/state HTTP/1.1" 200 -
+19:59:59 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 19:59:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+20:00:00 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:00] "GET / HTTP/1.1" 200 -
+20:00:00 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:00] "GET /api/state HTTP/1.1" 200 -
+20:00:00 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:00:03 [WARNING] main: WebSocket not connected — skipping tick
+20:00:05 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:05] "GET /api/state HTTP/1.1" 200 -
+20:00:10 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:10] "GET /api/state HTTP/1.1" 200 -
+20:00:13 [WARNING] main: WebSocket not connected — skipping tick
+20:00:15 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:15] "GET /api/state HTTP/1.1" 200 -
+20:00:20 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:20] "GET /api/state HTTP/1.1" 200 -
+20:00:23 [WARNING] main: WebSocket not connected — skipping tick
+20:00:25 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:25] "GET /api/state HTTP/1.1" 200 -
+20:00:30 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:30] "GET /api/state HTTP/1.1" 200 -
+20:00:30 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:00:30 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:00:30 [WARNING] core.feed: WebSocket closed: None None
+20:00:30 [INFO] core.feed: Reconnecting in 3s...
+20:00:33 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:00:34 [WARNING] main: WebSocket not connected — skipping tick
+20:00:35 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:35] "GET /api/state HTTP/1.1" 200 -
+20:00:40 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:40] "GET /api/state HTTP/1.1" 200 -
+20:00:44 [WARNING] main: WebSocket not connected — skipping tick
+20:00:45 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:45] "GET /api/state HTTP/1.1" 200 -
+20:00:50 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:50] "GET /api/state HTTP/1.1" 200 -
+20:00:54 [WARNING] main: WebSocket not connected — skipping tick
+20:00:55 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:00:55] "GET /api/state HTTP/1.1" 200 -
+20:01:00 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:00] "GET /api/state HTTP/1.1" 200 -
+20:01:04 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:01:04 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:01:04 [WARNING] core.feed: WebSocket closed: None None
+20:01:04 [INFO] core.feed: Reconnecting in 3s...
+20:01:04 [WARNING] main: WebSocket not connected — skipping tick
+20:01:05 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:05] "GET /api/state HTTP/1.1" 200 -
+20:01:07 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:01:10 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:10] "GET /api/state HTTP/1.1" 200 -
+20:01:14 [WARNING] main: WebSocket not connected — skipping tick
+20:01:15 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:15] "GET /api/state HTTP/1.1" 200 -
+20:01:16 [WARNING] core.feed: REST poll failed: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /fapi/v1/premiumIndex?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='api.binance.com', port=443): Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+20:01:20 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:20] "GET /api/state HTTP/1.1" 200 -
+20:01:24 [WARNING] main: WebSocket not connected — skipping tick
+20:01:25 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:25] "GET /api/state HTTP/1.1" 200 -
+20:01:30 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:30] "GET /api/state HTTP/1.1" 200 -
+20:01:34 [WARNING] main: WebSocket not connected — skipping tick
+20:01:35 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:35] "GET /api/state HTTP/1.1" 200 -
+20:01:37 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:01:37 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:01:37 [WARNING] core.feed: WebSocket closed: None None
+20:01:37 [INFO] core.feed: Reconnecting in 3s...
+20:01:40 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:01:40 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:40] "GET /api/state HTTP/1.1" 200 -
+20:01:44 [WARNING] main: WebSocket not connected — skipping tick
+20:01:45 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:45] "GET /api/state HTTP/1.1" 200 -
+20:01:50 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:50] "GET /api/state HTTP/1.1" 200 -
+20:01:54 [WARNING] main: WebSocket not connected — skipping tick
+20:01:55 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:01:55] "GET /api/state HTTP/1.1" 200 -
+20:02:00 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:00] "GET /api/state HTTP/1.1" 200 -
+20:02:04 [WARNING] main: WebSocket not connected — skipping tick
+20:02:05 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:05] "GET /api/state HTTP/1.1" 200 -
+20:02:10 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:02:10 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:02:10 [WARNING] core.feed: WebSocket closed: None None
+20:02:10 [INFO] core.feed: Reconnecting in 3s...
+20:02:10 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:10] "GET /api/state HTTP/1.1" 200 -
+20:02:13 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:02:14 [WARNING] main: WebSocket not connected — skipping tick
+20:02:15 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:15] "GET /api/state HTTP/1.1" 200 -
+20:02:20 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:20] "GET /api/state HTTP/1.1" 200 -
+20:02:24 [WARNING] main: WebSocket not connected — skipping tick
+20:02:25 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:25] "GET /api/state HTTP/1.1" 200 -
+20:02:30 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:30] "GET /api/state HTTP/1.1" 200 -
+20:02:34 [WARNING] main: WebSocket not connected — skipping tick
+20:02:35 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:35] "GET /api/state HTTP/1.1" 200 -
+20:02:40 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:40] "GET /api/state HTTP/1.1" 200 -
+20:02:43 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:02:43 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:02:43 [WARNING] core.feed: WebSocket closed: None None
+20:02:43 [INFO] core.feed: Reconnecting in 3s...
+20:02:44 [WARNING] main: WebSocket not connected — skipping tick
+20:02:45 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:45] "GET /api/state HTTP/1.1" 200 -
+20:02:46 [WARNING] core.feed: REST poll failed: HTTPSConnectionPool(host='api.binance.com', port=443): Max retries exceeded with url: /fapi/v1/premiumIndex?symbol=BTCUSDT (Caused by NameResolutionError("HTTPSConnection(host='api.binance.com', port=443): Failed to resolve 'api.binance.com' ([Errno 8] nodename nor servname provided, or not known)"))
+20:02:46 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:02:50 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:50] "GET /api/state HTTP/1.1" 200 -
+20:02:54 [WARNING] main: WebSocket not connected — skipping tick
+20:02:55 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:02:55] "GET /api/state HTTP/1.1" 200 -
+20:03:00 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:03:00] "GET /api/state HTTP/1.1" 200 -
+20:08:50 [INFO] main: ============================================================
+20:08:50 [INFO] main:   POLYMARKET BTC SIGNAL BOT
+20:08:50 [INFO] main:   Paper trading mode — signals only
+20:08:50 [INFO] main: ============================================================
+20:08:50 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:08:50 [INFO] core.feed: BinanceFeed started
+20:08:50 [INFO] core.feed: RestPoller started
+20:08:50 [INFO] web.dashboard: Dashboard running at http://localhost:5000
+20:08:50 [INFO] main: Waiting 8s for WebSocket to fill with data...
+20:08:50 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.1.47.113:5000
+20:08:50 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+20:08:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:08:51] "GET /api/state HTTP/1.1" 200 -
+20:08:51 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+20:08:51 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006) - goodbye
+20:08:51 [WARNING] core.feed: WebSocket closed: None None
+20:08:51 [INFO] core.feed: Reconnecting in 3s...
+20:08:54 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:08:55 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+20:08:55 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006) - goodbye
+20:08:55 [WARNING] core.feed: WebSocket closed: None None
+20:08:55 [INFO] core.feed: Reconnecting in 3s...
+20:08:55 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:08:55] "GET /api/state HTTP/1.1" 200 -
+20:08:58 [INFO] main: Starting main loop (ticking every 10s)
+20:08:58 [WARNING] main: WebSocket not connected — skipping tick
+20:08:58 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:08:59 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+20:08:59 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006) - goodbye
+20:08:59 [WARNING] core.feed: WebSocket closed: None None
+20:08:59 [INFO] core.feed: Reconnecting in 3s...
+20:09:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:09:01] "GET /api/state HTTP/1.1" 200 -
+20:09:02 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:09:03 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+20:09:03 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006) - goodbye
+20:09:03 [WARNING] core.feed: WebSocket closed: None None
+20:09:03 [INFO] core.feed: Reconnecting in 3s...
+20:09:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:09:06] "GET /api/state HTTP/1.1" 200 -
+20:09:06 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:09:07 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+20:09:07 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006) - goodbye
+20:09:07 [WARNING] core.feed: WebSocket closed: None None
+20:09:07 [INFO] core.feed: Reconnecting in 3s...
+20:09:08 [WARNING] main: WebSocket not connected — skipping tick
+20:09:10 [INFO] core.feed: Connecting to wss://stream.binance.com:9443/stream?streams=btcusdt@aggTrad...
+20:09:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:09:11] "GET /api/state HTTP/1.1" 200 -
+20:09:12 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006)
+20:09:12 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1006) - goodbye
+20:09:12 [WARNING] core.feed: WebSocket closed: None None
+20:09:12 [INFO] core.feed: Reconnecting in 3s...
+20:11:47 [INFO] main: ============================================================
+20:11:47 [INFO] main:   POLYMARKET BTC SIGNAL BOT
+20:11:47 [INFO] main:   Paper trading mode — signals only
+20:11:47 [INFO] main: ============================================================
+20:11:47 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:11:47 [INFO] core.feed: CoinbaseFeed started
+20:11:47 [INFO] core.feed: RestPoller started
+20:11:47 [INFO] web.dashboard: Dashboard running at http://localhost:5000
+20:11:47 [INFO] main: Waiting 8s for WebSocket to fill with data...
+20:11:47 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.163.193:5000
+20:11:47 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+20:11:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:11:51] "GET /api/state HTTP/1.1" 200 -
+20:11:55 [INFO] main: Starting main loop (ticking every 10s)
+20:11:55 [WARNING] main: WebSocket not connected — skipping tick
+20:11:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:11:56] "GET /api/state HTTP/1.1" 200 -
+20:12:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:01] "GET /api/state HTTP/1.1" 200 -
+20:12:05 [WARNING] main: WebSocket not connected — skipping tick
+20:12:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:06] "GET /api/state HTTP/1.1" 200 -
+20:12:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:11] "GET /api/state HTTP/1.1" 200 -
+20:12:15 [WARNING] main: WebSocket not connected — skipping tick
+20:12:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:16] "GET /api/state HTTP/1.1" 200 -
+20:12:17 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:12:17 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:12:17 [WARNING] core.feed: WebSocket closed: None None
+20:12:17 [INFO] core.feed: Reconnecting in 3s...
+20:12:20 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:12:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:21] "GET /api/state HTTP/1.1" 200 -
+20:12:25 [WARNING] main: WebSocket not connected — skipping tick
+20:12:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:26] "GET /api/state HTTP/1.1" 200 -
+20:12:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:31] "GET / HTTP/1.1" 200 -
+20:12:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:31] "GET /api/state HTTP/1.1" 200 -
+20:12:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+20:12:35 [WARNING] main: WebSocket not connected — skipping tick
+20:12:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:36] "GET /api/state HTTP/1.1" 200 -
+20:12:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:41] "GET /api/state HTTP/1.1" 200 -
+20:12:45 [WARNING] main: WebSocket not connected — skipping tick
+20:12:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:46] "GET /api/state HTTP/1.1" 200 -
+20:12:50 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:12:50 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:12:50 [WARNING] core.feed: WebSocket closed: None None
+20:12:50 [INFO] core.feed: Reconnecting in 3s...
+20:12:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:51] "GET /api/state HTTP/1.1" 200 -
+20:12:53 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:12:55 [WARNING] main: WebSocket not connected — skipping tick
+20:12:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:12:56] "GET /api/state HTTP/1.1" 200 -
+20:13:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:01] "GET /api/state HTTP/1.1" 200 -
+20:13:05 [WARNING] main: WebSocket not connected — skipping tick
+20:13:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:06] "GET /api/state HTTP/1.1" 200 -
+20:13:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:11] "GET /api/state HTTP/1.1" 200 -
+20:13:15 [WARNING] main: WebSocket not connected — skipping tick
+20:13:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:16] "GET /api/state HTTP/1.1" 200 -
+20:13:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:21] "GET /api/state HTTP/1.1" 200 -
+20:13:23 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:13:23 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:13:23 [WARNING] core.feed: WebSocket closed: None None
+20:13:23 [INFO] core.feed: Reconnecting in 3s...
+20:13:25 [WARNING] main: WebSocket not connected — skipping tick
+20:13:26 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:31] "GET /api/state HTTP/1.1" 200 -
+20:13:32 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:32 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:32 [WARNING] core.feed: WebSocket closed: None None
+20:13:32 [INFO] core.feed: Reconnecting in 3s...
+20:13:35 [WARNING] main: WebSocket not connected — skipping tick
+20:13:35 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:36 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:36 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:36 [WARNING] core.feed: WebSocket closed: None None
+20:13:36 [INFO] core.feed: Reconnecting in 3s...
+20:13:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:36] "GET /api/state HTTP/1.1" 200 -
+20:13:39 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:40 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:40 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:40 [WARNING] core.feed: WebSocket closed: None None
+20:13:40 [INFO] core.feed: Reconnecting in 3s...
+20:13:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:41] "GET /api/state HTTP/1.1" 200 -
+20:13:43 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:43 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:43 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:43 [WARNING] core.feed: WebSocket closed: None None
+20:13:43 [INFO] core.feed: Reconnecting in 3s...
+20:13:45 [WARNING] main: WebSocket not connected — skipping tick
+20:13:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:46] "GET /api/state HTTP/1.1" 200 -
+20:13:46 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:48 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:48 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:48 [WARNING] core.feed: WebSocket closed: None None
+20:13:48 [INFO] core.feed: Reconnecting in 3s...
+20:13:51 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:51] "GET /api/state HTTP/1.1" 200 -
+20:13:52 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:52 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:52 [WARNING] core.feed: WebSocket closed: None None
+20:13:52 [INFO] core.feed: Reconnecting in 3s...
+20:13:55 [WARNING] main: WebSocket not connected — skipping tick
+20:13:55 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:56 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:56 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:56 [WARNING] core.feed: WebSocket closed: None None
+20:13:56 [INFO] core.feed: Reconnecting in 3s...
+20:13:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:13:56] "GET /api/state HTTP/1.1" 200 -
+20:13:59 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:13:59 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:13:59 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:13:59 [WARNING] core.feed: WebSocket closed: None None
+20:13:59 [INFO] core.feed: Reconnecting in 3s...
+20:14:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:01] "GET /api/state HTTP/1.1" 200 -
+20:14:02 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:03 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:03 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:03 [WARNING] core.feed: WebSocket closed: None None
+20:14:03 [INFO] core.feed: Reconnecting in 3s...
+20:14:05 [WARNING] main: WebSocket not connected — skipping tick
+20:14:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:06] "GET /api/state HTTP/1.1" 200 -
+20:14:06 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:08 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:08 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:08 [WARNING] core.feed: WebSocket closed: None None
+20:14:08 [INFO] core.feed: Reconnecting in 3s...
+20:14:11 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:11] "GET /api/state HTTP/1.1" 200 -
+20:14:12 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:12 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:12 [WARNING] core.feed: WebSocket closed: None None
+20:14:12 [INFO] core.feed: Reconnecting in 3s...
+20:14:15 [WARNING] main: WebSocket not connected — skipping tick
+20:14:15 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:16 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:16 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:16 [WARNING] core.feed: WebSocket closed: None None
+20:14:16 [INFO] core.feed: Reconnecting in 3s...
+20:14:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:16] "GET /api/state HTTP/1.1" 200 -
+20:14:19 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:20 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:20 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:20 [WARNING] core.feed: WebSocket closed: None None
+20:14:20 [INFO] core.feed: Reconnecting in 3s...
+20:14:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:21] "GET /api/state HTTP/1.1" 200 -
+20:14:23 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:24 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:24 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:24 [WARNING] core.feed: WebSocket closed: None None
+20:14:24 [INFO] core.feed: Reconnecting in 3s...
+20:14:25 [WARNING] main: WebSocket not connected — skipping tick
+20:14:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:26] "GET /api/state HTTP/1.1" 200 -
+20:14:27 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:28 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:28 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:28 [WARNING] core.feed: WebSocket closed: None None
+20:14:28 [INFO] core.feed: Reconnecting in 3s...
+20:14:31 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:31] "GET /api/state HTTP/1.1" 200 -
+20:14:32 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:32 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:32 [WARNING] core.feed: WebSocket closed: None None
+20:14:32 [INFO] core.feed: Reconnecting in 3s...
+20:14:35 [WARNING] main: WebSocket not connected — skipping tick
+20:14:35 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:36 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:36 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:36 [WARNING] core.feed: WebSocket closed: None None
+20:14:36 [INFO] core.feed: Reconnecting in 3s...
+20:14:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:36] "GET /api/state HTTP/1.1" 200 -
+20:14:39 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:40 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:40 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:40 [WARNING] core.feed: WebSocket closed: None None
+20:14:40 [INFO] core.feed: Reconnecting in 3s...
+20:14:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:41] "GET /api/state HTTP/1.1" 200 -
+20:14:43 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:44 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:44 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:44 [WARNING] core.feed: WebSocket closed: None None
+20:14:44 [INFO] core.feed: Reconnecting in 3s...
+20:14:45 [WARNING] main: WebSocket not connected — skipping tick
+20:14:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:46] "GET /api/state HTTP/1.1" 200 -
+20:14:47 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:48 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:48 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:48 [WARNING] core.feed: WebSocket closed: None None
+20:14:48 [INFO] core.feed: Reconnecting in 3s...
+20:14:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:51] "GET /api/state HTTP/1.1" 200 -
+20:14:51 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:52 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:52 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:52 [WARNING] core.feed: WebSocket closed: None None
+20:14:52 [INFO] core.feed: Reconnecting in 3s...
+20:14:55 [WARNING] main: WebSocket not connected — skipping tick
+20:14:55 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:14:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:14:56] "GET /api/state HTTP/1.1" 200 -
+20:14:56 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:14:56 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:14:56 [WARNING] core.feed: WebSocket closed: None None
+20:14:56 [INFO] core.feed: Reconnecting in 3s...
+20:14:59 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:15:01 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:15:01 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:15:01 [WARNING] core.feed: WebSocket closed: None None
+20:15:01 [INFO] core.feed: Reconnecting in 3s...
+20:15:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:01] "GET /api/state HTTP/1.1" 200 -
+20:15:04 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:15:05 [WARNING] main: WebSocket not connected — skipping tick
+20:15:05 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:15:05 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:15:05 [WARNING] core.feed: WebSocket closed: None None
+20:15:05 [INFO] core.feed: Reconnecting in 3s...
+20:15:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:06] "GET /api/state HTTP/1.1" 200 -
+20:15:08 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:15:09 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:15:09 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:15:09 [WARNING] core.feed: WebSocket closed: None None
+20:15:09 [INFO] core.feed: Reconnecting in 3s...
+20:15:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:11] "GET /api/state HTTP/1.1" 200 -
+20:15:12 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:15:13 [ERROR] core.feed: WebSocket error: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006)
+20:15:13 [ERROR] websocket: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1006) - goodbye
+20:15:13 [WARNING] core.feed: WebSocket closed: None None
+20:15:13 [INFO] core.feed: Reconnecting in 3s...
+20:15:15 [WARNING] main: WebSocket not connected — skipping tick
+20:15:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:16] "GET /api/state HTTP/1.1" 200 -
+20:15:16 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:15:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:21] "GET /api/state HTTP/1.1" 200 -
+20:15:25 [WARNING] main: WebSocket not connected — skipping tick
+20:15:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:26] "GET /api/state HTTP/1.1" 200 -
+20:15:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:31] "GET /api/state HTTP/1.1" 200 -
+20:15:35 [WARNING] main: WebSocket not connected — skipping tick
+20:15:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:36] "GET /api/state HTTP/1.1" 200 -
+20:15:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:41] "GET /api/state HTTP/1.1" 200 -
+20:15:45 [WARNING] main: WebSocket not connected — skipping tick
+20:15:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:46] "GET /api/state HTTP/1.1" 200 -
+20:15:46 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:15:46 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:15:46 [WARNING] core.feed: WebSocket closed: None None
+20:15:46 [INFO] core.feed: Reconnecting in 3s...
+20:15:49 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:15:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:51] "GET /api/state HTTP/1.1" 200 -
+20:15:55 [WARNING] main: WebSocket not connected — skipping tick
+20:15:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:15:56] "GET /api/state HTTP/1.1" 200 -
+20:16:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:16:01] "GET /api/state HTTP/1.1" 200 -
+20:16:05 [WARNING] main: WebSocket not connected — skipping tick
+20:16:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:16:06] "GET /api/state HTTP/1.1" 200 -
+20:16:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:16:11] "GET /api/state HTTP/1.1" 200 -
+20:16:15 [WARNING] main: WebSocket not connected — skipping tick
+20:16:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:16:16] "GET /api/state HTTP/1.1" 200 -
+20:16:19 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:16:19 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:16:19 [WARNING] core.feed: WebSocket closed: None None
+20:16:19 [INFO] core.feed: Reconnecting in 3s...
+20:16:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:16:21] "GET /api/state HTTP/1.1" 200 -
+20:16:23 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:16:25 [WARNING] main: WebSocket not connected — skipping tick
+20:16:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:16:26] "GET /api/state HTTP/1.1" 200 -
+20:19:25 [INFO] main: ============================================================
+20:19:25 [INFO] main:   POLYMARKET BTC SIGNAL BOT
+20:19:25 [INFO] main:   Paper trading mode — signals only
+20:19:25 [INFO] main: ============================================================
+20:19:25 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:19:25 [INFO] core.feed: CoinbaseFeed started
+20:19:25 [INFO] core.feed: RestPoller started
+20:19:25 [INFO] web.dashboard: Dashboard running at http://localhost:5000
+20:19:25 [INFO] main: Waiting 8s for WebSocket to fill with data...
+20:19:26 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.32.163.193:5000
+20:19:26 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+20:19:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:26] "GET /api/state HTTP/1.1" 200 -
+20:19:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:31] "GET /api/state HTTP/1.1" 200 -
+20:19:33 [INFO] main: Starting main loop (ticking every 10s)
+20:19:33 [WARNING] main: WebSocket not connected — skipping tick
+20:19:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:36] "GET /api/state HTTP/1.1" 200 -
+20:19:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:41] "GET /api/state HTTP/1.1" 200 -
+20:19:43 [WARNING] main: WebSocket not connected — skipping tick
+20:19:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:46] "GET /api/state HTTP/1.1" 200 -
+20:19:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:51] "GET /api/state HTTP/1.1" 200 -
+20:19:53 [WARNING] main: WebSocket not connected — skipping tick
+20:19:55 [ERROR] core.feed: WebSocket error: [Errno 8] nodename nor servname provided, or not known
+20:19:55 [ERROR] websocket: [Errno 8] nodename nor servname provided, or not known - goodbye
+20:19:55 [WARNING] core.feed: WebSocket closed: None None
+20:19:55 [INFO] core.feed: Reconnecting in 3s...
+20:19:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:19:56] "GET /api/state HTTP/1.1" 200 -
+20:19:58 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:20:02 [ERROR] core.feed: WebSocket error: [Errno 65] No route to host
+20:20:02 [ERROR] websocket: [Errno 65] No route to host - goodbye
+20:20:02 [WARNING] core.feed: WebSocket closed: None None
+20:20:02 [INFO] core.feed: Reconnecting in 3s...
+20:20:04 [WARNING] main: WebSocket not connected — skipping tick
+20:20:05 [INFO] core.feed: Connecting to Coinbase WebSocket...
+20:20:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:06] "GET /api/state HTTP/1.1" 200 -
+20:20:07 [INFO] websocket: Websocket connected
+20:20:07 [INFO] core.feed: WebSocket connected ✓
+20:20:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:11] "GET /api/state HTTP/1.1" 200 -
+20:20:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:16] "GET /api/state HTTP/1.1" 200 -
+20:20:17 [INFO] core.feed: Found 0 active BTC markets
+20:20:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:21] "GET /api/state HTTP/1.1" 200 -
+20:20:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:26] "GET / HTTP/1.1" 200 -
+20:20:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:26] "GET /api/state HTTP/1.1" 200 -
+20:20:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:26] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+20:20:29 [INFO] core.feed: Found 0 active BTC markets
+20:20:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:31] "GET /api/state HTTP/1.1" 200 -
+20:20:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:36] "GET /api/state HTTP/1.1" 200 -
+20:20:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:41] "GET /api/state HTTP/1.1" 200 -
+20:20:42 [INFO] core.feed: Found 0 active BTC markets
+20:20:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:46] "GET /api/state HTTP/1.1" 200 -
+20:20:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:51] "GET /api/state HTTP/1.1" 200 -
+20:20:54 [INFO] core.feed: Found 0 active BTC markets
+20:20:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:20:56] "GET /api/state HTTP/1.1" 200 -
+20:21:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:01] "GET /api/state HTTP/1.1" 200 -
+20:21:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:06] "GET /api/state HTTP/1.1" 200 -
+20:21:07 [INFO] core.feed: Found 0 active BTC markets
+20:21:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:11] "GET /api/state HTTP/1.1" 200 -
+20:21:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:16] "GET /api/state HTTP/1.1" 200 -
+20:21:20 [INFO] core.feed: Found 0 active BTC markets
+20:21:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:21] "GET /api/state HTTP/1.1" 200 -
+20:21:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:26] "GET /api/state HTTP/1.1" 200 -
+20:21:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:31] "GET /api/state HTTP/1.1" 200 -
+20:21:32 [INFO] core.feed: Found 0 active BTC markets
+20:21:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:36] "GET /api/state HTTP/1.1" 200 -
+20:21:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:41] "GET /api/state HTTP/1.1" 200 -
+20:21:45 [INFO] core.feed: Found 0 active BTC markets
+20:21:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:46] "GET /api/state HTTP/1.1" 200 -
+20:21:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:51] "GET /api/state HTTP/1.1" 200 -
+20:21:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:21:56] "GET /api/state HTTP/1.1" 200 -
+20:21:57 [INFO] core.feed: Found 0 active BTC markets
+20:22:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:01] "GET /api/state HTTP/1.1" 200 -
+20:22:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:06] "GET /api/state HTTP/1.1" 200 -
+20:22:10 [INFO] core.feed: Found 0 active BTC markets
+20:22:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:11] "GET /api/state HTTP/1.1" 200 -
+20:22:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:16] "GET /api/state HTTP/1.1" 200 -
+20:22:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:21] "GET /api/state HTTP/1.1" 200 -
+20:22:22 [INFO] core.feed: Found 0 active BTC markets
+20:22:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:26] "GET /api/state HTTP/1.1" 200 -
+20:22:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:31] "GET /api/state HTTP/1.1" 200 -
+20:22:35 [INFO] core.feed: Found 0 active BTC markets
+20:22:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:36] "GET /api/state HTTP/1.1" 200 -
+20:22:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:41] "GET /api/state HTTP/1.1" 200 -
+20:22:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:46] "GET /api/state HTTP/1.1" 200 -
+20:22:48 [INFO] core.feed: Found 0 active BTC markets
+20:22:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:51] "GET /api/state HTTP/1.1" 200 -
+20:22:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:22:56] "GET /api/state HTTP/1.1" 200 -
+20:23:00 [INFO] core.feed: Found 0 active BTC markets
+20:23:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:01] "GET /api/state HTTP/1.1" 200 -
+20:23:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:06] "GET /api/state HTTP/1.1" 200 -
+20:23:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:11] "GET /api/state HTTP/1.1" 200 -
+20:23:12 [INFO] core.feed: Found 0 active BTC markets
+20:23:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:16] "GET /api/state HTTP/1.1" 200 -
+20:23:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:21] "GET /api/state HTTP/1.1" 200 -
+20:23:25 [INFO] core.feed: Found 0 active BTC markets
+20:23:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:26] "GET /api/state HTTP/1.1" 200 -
+20:23:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:31] "GET /api/state HTTP/1.1" 200 -
+20:23:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:36] "GET /api/state HTTP/1.1" 200 -
+20:23:38 [INFO] core.feed: Found 0 active BTC markets
+20:23:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:41] "GET /api/state HTTP/1.1" 200 -
+20:23:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:46] "GET /api/state HTTP/1.1" 200 -
+20:23:51 [INFO] core.feed: Found 0 active BTC markets
+20:23:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:51] "GET /api/state HTTP/1.1" 200 -
+20:23:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:23:56] "GET /api/state HTTP/1.1" 200 -
+20:24:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:01] "GET /api/state HTTP/1.1" 200 -
+20:24:03 [INFO] core.feed: Found 0 active BTC markets
+20:24:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:06] "GET /api/state HTTP/1.1" 200 -
+20:24:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:11] "GET /api/state HTTP/1.1" 200 -
+20:24:16 [INFO] core.feed: Found 0 active BTC markets
+20:24:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:16] "GET /api/state HTTP/1.1" 200 -
+20:24:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:21] "GET /api/state HTTP/1.1" 200 -
+20:24:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:26] "GET /api/state HTTP/1.1" 200 -
+20:24:28 [INFO] core.feed: Found 0 active BTC markets
+20:24:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:31] "GET /api/state HTTP/1.1" 200 -
+20:24:36 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:36] "GET /api/state HTTP/1.1" 200 -
+20:24:40 [INFO] core.feed: Found 0 active BTC markets
+20:24:41 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:41] "GET /api/state HTTP/1.1" 200 -
+20:24:46 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:46] "GET /api/state HTTP/1.1" 200 -
+20:24:51 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:51] "GET /api/state HTTP/1.1" 200 -
+20:24:53 [INFO] core.feed: Found 0 active BTC markets
+20:24:56 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:24:56] "GET /api/state HTTP/1.1" 200 -
+20:25:01 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:01] "GET /api/state HTTP/1.1" 200 -
+20:25:05 [INFO] core.feed: Found 0 active BTC markets
+20:25:06 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:06] "GET /api/state HTTP/1.1" 200 -
+20:25:11 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:11] "GET /api/state HTTP/1.1" 200 -
+20:25:16 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:16] "GET /api/state HTTP/1.1" 200 -
+20:25:18 [INFO] core.feed: Found 0 active BTC markets
+20:25:21 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:21] "GET /api/state HTTP/1.1" 200 -
+20:25:26 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:26] "GET /api/state HTTP/1.1" 200 -
+20:25:31 [INFO] core.feed: Found 0 active BTC markets
+20:25:31 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:31] "GET /api/state HTTP/1.1" 200 -
+20:25:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:37] "GET /api/state HTTP/1.1" 200 -
+20:25:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:42] "GET /api/state HTTP/1.1" 200 -
+20:25:43 [INFO] core.feed: Found 0 active BTC markets
+20:25:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:47] "GET /api/state HTTP/1.1" 200 -
+20:25:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:52] "GET /api/state HTTP/1.1" 200 -
+20:25:56 [INFO] core.feed: Found 0 active BTC markets
+20:25:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:25:57] "GET /api/state HTTP/1.1" 200 -
+20:26:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:02] "GET /api/state HTTP/1.1" 200 -
+20:26:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:07] "GET /api/state HTTP/1.1" 200 -
+20:26:09 [INFO] core.feed: Found 0 active BTC markets
+20:26:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:12] "GET /api/state HTTP/1.1" 200 -
+20:26:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:17] "GET /api/state HTTP/1.1" 200 -
+20:26:21 [INFO] core.feed: Found 0 active BTC markets
+20:26:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:22] "GET /api/state HTTP/1.1" 200 -
+20:26:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:27] "GET /api/state HTTP/1.1" 200 -
+20:26:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:32] "GET /api/state HTTP/1.1" 200 -
+20:26:34 [INFO] core.feed: Found 0 active BTC markets
+20:26:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:37] "GET /api/state HTTP/1.1" 200 -
+20:26:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:42] "GET /api/state HTTP/1.1" 200 -
+20:26:47 [INFO] core.feed: Found 0 active BTC markets
+20:26:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:47] "GET /api/state HTTP/1.1" 200 -
+20:26:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:52] "GET /api/state HTTP/1.1" 200 -
+20:26:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:26:57] "GET /api/state HTTP/1.1" 200 -
+20:26:59 [INFO] core.feed: Found 0 active BTC markets
+20:27:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:02] "GET /api/state HTTP/1.1" 200 -
+20:27:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:07] "GET /api/state HTTP/1.1" 200 -
+20:27:12 [INFO] core.feed: Found 0 active BTC markets
+20:27:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:12] "GET /api/state HTTP/1.1" 200 -
+20:27:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:17] "GET /api/state HTTP/1.1" 200 -
+20:27:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:22] "GET /api/state HTTP/1.1" 200 -
+20:27:24 [INFO] core.feed: Found 0 active BTC markets
+20:27:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:27] "GET /api/state HTTP/1.1" 200 -
+20:27:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:32] "GET /api/state HTTP/1.1" 200 -
+20:27:36 [INFO] core.feed: Found 0 active BTC markets
+20:27:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:37] "GET /api/state HTTP/1.1" 200 -
+20:27:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:42] "GET /api/state HTTP/1.1" 200 -
+20:27:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:47] "GET /api/state HTTP/1.1" 200 -
+20:27:48 [INFO] core.feed: Found 0 active BTC markets
+20:27:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:52] "GET /api/state HTTP/1.1" 200 -
+20:27:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:27:57] "GET /api/state HTTP/1.1" 200 -
+20:28:00 [INFO] core.feed: Found 0 active BTC markets
+20:28:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:02] "GET /api/state HTTP/1.1" 200 -
+20:28:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:07] "GET /api/state HTTP/1.1" 200 -
+20:28:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:12] "GET /api/state HTTP/1.1" 200 -
+20:28:13 [INFO] core.feed: Found 0 active BTC markets
+20:28:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:17] "GET /api/state HTTP/1.1" 200 -
+20:28:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:22] "GET /api/state HTTP/1.1" 200 -
+20:28:25 [INFO] core.feed: Found 0 active BTC markets
+20:28:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:27] "GET /api/state HTTP/1.1" 200 -
+20:28:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:32] "GET /api/state HTTP/1.1" 200 -
+20:28:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:37] "GET /api/state HTTP/1.1" 200 -
+20:28:38 [INFO] core.feed: Found 0 active BTC markets
+20:28:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:42] "GET /api/state HTTP/1.1" 200 -
+20:28:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:47] "GET /api/state HTTP/1.1" 200 -
+20:28:50 [INFO] core.feed: Found 0 active BTC markets
+20:28:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:52] "GET /api/state HTTP/1.1" 200 -
+20:28:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:28:57] "GET /api/state HTTP/1.1" 200 -
+20:29:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:02] "GET /api/state HTTP/1.1" 200 -
+20:29:02 [INFO] core.feed: Found 0 active BTC markets
+20:29:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:07] "GET /api/state HTTP/1.1" 200 -
+20:29:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:12] "GET /api/state HTTP/1.1" 200 -
+20:29:15 [INFO] core.feed: Found 0 active BTC markets
+20:29:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:17] "GET /api/state HTTP/1.1" 200 -
+20:29:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:22] "GET /api/state HTTP/1.1" 200 -
+20:29:27 [INFO] core.feed: Found 0 active BTC markets
+20:29:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:27] "GET /api/state HTTP/1.1" 200 -
+20:29:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:32] "GET /api/state HTTP/1.1" 200 -
+20:29:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:37] "GET /api/state HTTP/1.1" 200 -
+20:29:40 [INFO] core.feed: Found 0 active BTC markets
+20:29:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:42] "GET /api/state HTTP/1.1" 200 -
+20:29:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:47] "GET /api/state HTTP/1.1" 200 -
+20:29:52 [INFO] core.feed: Found 0 active BTC markets
+20:29:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:52] "GET /api/state HTTP/1.1" 200 -
+20:29:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:29:57] "GET /api/state HTTP/1.1" 200 -
+20:30:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:02] "GET /api/state HTTP/1.1" 200 -
+20:30:04 [INFO] core.feed: Found 0 active BTC markets
+20:30:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:07] "GET /api/state HTTP/1.1" 200 -
+20:30:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:12] "GET /api/state HTTP/1.1" 200 -
+20:30:16 [INFO] core.feed: Found 0 active BTC markets
+20:30:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:17] "GET /api/state HTTP/1.1" 200 -
+20:30:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:22] "GET /api/state HTTP/1.1" 200 -
+20:30:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:27] "GET /api/state HTTP/1.1" 200 -
+20:30:28 [INFO] core.feed: Found 0 active BTC markets
+20:30:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:32] "GET /api/state HTTP/1.1" 200 -
+20:30:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:37] "GET /api/state HTTP/1.1" 200 -
+20:30:41 [INFO] core.feed: Found 0 active BTC markets
+20:30:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:42] "GET /api/state HTTP/1.1" 200 -
+20:30:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:47] "GET /api/state HTTP/1.1" 200 -
+20:30:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:52] "GET /api/state HTTP/1.1" 200 -
+20:30:53 [INFO] core.feed: Found 0 active BTC markets
+20:30:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:30:57] "GET /api/state HTTP/1.1" 200 -
+20:31:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:02] "GET /api/state HTTP/1.1" 200 -
+20:31:06 [INFO] core.feed: Found 0 active BTC markets
+20:31:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:07] "GET /api/state HTTP/1.1" 200 -
+20:31:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:12] "GET /api/state HTTP/1.1" 200 -
+20:31:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:17] "GET /api/state HTTP/1.1" 200 -
+20:31:18 [INFO] core.feed: Found 0 active BTC markets
+20:31:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:22] "GET /api/state HTTP/1.1" 200 -
+20:31:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:27] "GET /api/state HTTP/1.1" 200 -
+20:31:30 [INFO] core.feed: Found 0 active BTC markets
+20:31:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:32] "GET /api/state HTTP/1.1" 200 -
+20:31:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:37] "GET /api/state HTTP/1.1" 200 -
+20:31:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:42] "GET /api/state HTTP/1.1" 200 -
+20:31:43 [INFO] core.feed: Found 0 active BTC markets
+20:31:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:47] "GET /api/state HTTP/1.1" 200 -
+20:31:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:52] "GET /api/state HTTP/1.1" 200 -
+20:31:56 [INFO] core.feed: Found 0 active BTC markets
+20:31:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:31:57] "GET /api/state HTTP/1.1" 200 -
+20:32:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:02] "GET /api/state HTTP/1.1" 200 -
+20:32:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:07] "GET /api/state HTTP/1.1" 200 -
+20:32:08 [INFO] core.feed: Found 0 active BTC markets
+20:32:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:12] "GET /api/state HTTP/1.1" 200 -
+20:32:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:17] "GET /api/state HTTP/1.1" 200 -
+20:32:21 [INFO] core.feed: Found 0 active BTC markets
+20:32:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:22] "GET /api/state HTTP/1.1" 200 -
+20:32:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:27] "GET /api/state HTTP/1.1" 200 -
+20:32:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:32] "GET /api/state HTTP/1.1" 200 -
+20:32:33 [INFO] core.feed: Found 0 active BTC markets
+20:32:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:37] "GET /api/state HTTP/1.1" 200 -
+20:32:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:42] "GET /api/state HTTP/1.1" 200 -
+20:32:46 [INFO] core.feed: Found 0 active BTC markets
+20:32:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:47] "GET /api/state HTTP/1.1" 200 -
+20:32:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:52] "GET /api/state HTTP/1.1" 200 -
+20:32:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:32:57] "GET /api/state HTTP/1.1" 200 -
+20:32:58 [INFO] core.feed: Found 0 active BTC markets
+20:33:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:02] "GET /api/state HTTP/1.1" 200 -
+20:33:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:07] "GET /api/state HTTP/1.1" 200 -
+20:33:10 [INFO] core.feed: Found 0 active BTC markets
+20:33:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:12] "GET /api/state HTTP/1.1" 200 -
+20:33:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:17] "GET /api/state HTTP/1.1" 200 -
+20:33:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:22] "GET /api/state HTTP/1.1" 200 -
+20:33:23 [INFO] core.feed: Found 0 active BTC markets
+20:33:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:27] "GET /api/state HTTP/1.1" 200 -
+20:33:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:32] "GET /api/state HTTP/1.1" 200 -
+20:33:35 [INFO] core.feed: Found 0 active BTC markets
+20:33:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:37] "GET /api/state HTTP/1.1" 200 -
+20:33:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:42] "GET /api/state HTTP/1.1" 200 -
+20:33:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:47] "GET /api/state HTTP/1.1" 200 -
+20:33:47 [INFO] core.feed: Found 0 active BTC markets
+20:33:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:52] "GET /api/state HTTP/1.1" 200 -
+20:33:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:33:57] "GET /api/state HTTP/1.1" 200 -
+20:33:59 [INFO] core.feed: Found 0 active BTC markets
+20:34:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:02] "GET /api/state HTTP/1.1" 200 -
+20:34:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:07] "GET /api/state HTTP/1.1" 200 -
+20:34:12 [INFO] core.feed: Found 0 active BTC markets
+20:34:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:12] "GET /api/state HTTP/1.1" 200 -
+20:34:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:17] "GET /api/state HTTP/1.1" 200 -
+20:34:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:22] "GET /api/state HTTP/1.1" 200 -
+20:34:24 [INFO] core.feed: Found 0 active BTC markets
+20:34:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:27] "GET /api/state HTTP/1.1" 200 -
+20:34:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:32] "GET /api/state HTTP/1.1" 200 -
+20:34:37 [INFO] core.feed: Found 0 active BTC markets
+20:34:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:37] "GET /api/state HTTP/1.1" 200 -
+20:34:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:42] "GET /api/state HTTP/1.1" 200 -
+20:34:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:47] "GET /api/state HTTP/1.1" 200 -
+20:34:49 [INFO] core.feed: Found 0 active BTC markets
+20:34:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:52] "GET /api/state HTTP/1.1" 200 -
+20:34:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:34:57] "GET /api/state HTTP/1.1" 200 -
+20:35:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:02] "GET /api/state HTTP/1.1" 200 -
+20:35:04 [INFO] core.feed: Found 0 active BTC markets
+20:35:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:07] "GET /api/state HTTP/1.1" 200 -
+20:35:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:12] "GET /api/state HTTP/1.1" 200 -
+20:35:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:17] "GET /api/state HTTP/1.1" 200 -
+20:35:17 [INFO] core.feed: Found 0 active BTC markets
+20:35:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:22] "GET /api/state HTTP/1.1" 200 -
+20:35:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:27] "GET /api/state HTTP/1.1" 200 -
+20:35:30 [INFO] core.feed: Found 0 active BTC markets
+20:35:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:32] "GET /api/state HTTP/1.1" 200 -
+20:35:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:37] "GET /api/state HTTP/1.1" 200 -
+20:35:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:42] "GET /api/state HTTP/1.1" 200 -
+20:35:43 [INFO] core.feed: Found 0 active BTC markets
+20:35:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:47] "GET /api/state HTTP/1.1" 200 -
+20:35:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:52] "GET /api/state HTTP/1.1" 200 -
+20:35:55 [INFO] core.feed: Found 0 active BTC markets
+20:35:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:35:57] "GET /api/state HTTP/1.1" 200 -
+20:36:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:02] "GET /api/state HTTP/1.1" 200 -
+20:36:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:07] "GET /api/state HTTP/1.1" 200 -
+20:36:07 [INFO] core.feed: Found 0 active BTC markets
+20:36:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:12] "GET /api/state HTTP/1.1" 200 -
+20:36:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:17] "GET /api/state HTTP/1.1" 200 -
+20:36:20 [INFO] core.feed: Found 0 active BTC markets
+20:36:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:22] "GET /api/state HTTP/1.1" 200 -
+20:36:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:27] "GET /api/state HTTP/1.1" 200 -
+20:36:32 [INFO] core.feed: Found 0 active BTC markets
+20:36:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:32] "GET /api/state HTTP/1.1" 200 -
+20:36:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:37] "GET /api/state HTTP/1.1" 200 -
+20:36:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:42] "GET /api/state HTTP/1.1" 200 -
+20:36:45 [INFO] core.feed: Found 0 active BTC markets
+20:36:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:47] "GET /api/state HTTP/1.1" 200 -
+20:36:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:52] "GET /api/state HTTP/1.1" 200 -
+20:36:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:36:57] "GET /api/state HTTP/1.1" 200 -
+20:36:57 [INFO] core.feed: Found 0 active BTC markets
+20:37:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:02] "GET /api/state HTTP/1.1" 200 -
+20:37:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:07] "GET /api/state HTTP/1.1" 200 -
+20:37:10 [INFO] core.feed: Found 0 active BTC markets
+20:37:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:12] "GET /api/state HTTP/1.1" 200 -
+20:37:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:17] "GET /api/state HTTP/1.1" 200 -
+20:37:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:22] "GET /api/state HTTP/1.1" 200 -
+20:37:23 [INFO] core.feed: Found 0 active BTC markets
+20:37:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:27] "GET /api/state HTTP/1.1" 200 -
+20:37:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:32] "GET /api/state HTTP/1.1" 200 -
+20:37:35 [INFO] core.feed: Found 0 active BTC markets
+20:37:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:37] "GET /api/state HTTP/1.1" 200 -
+20:37:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:42] "GET /api/state HTTP/1.1" 200 -
+20:37:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:47] "GET /api/state HTTP/1.1" 200 -
+20:37:49 [INFO] core.feed: Found 0 active BTC markets
+20:37:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:52] "GET /api/state HTTP/1.1" 200 -
+20:37:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:37:57] "GET /api/state HTTP/1.1" 200 -
+20:38:02 [INFO] core.feed: Found 0 active BTC markets
+20:38:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:02] "GET /api/state HTTP/1.1" 200 -
+20:38:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:07] "GET /api/state HTTP/1.1" 200 -
+20:38:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:12] "GET /api/state HTTP/1.1" 200 -
+20:38:15 [INFO] core.feed: Found 0 active BTC markets
+20:38:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:17] "GET /api/state HTTP/1.1" 200 -
+20:38:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:22] "GET /api/state HTTP/1.1" 200 -
+20:38:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:27] "GET /api/state HTTP/1.1" 200 -
+20:38:28 [INFO] core.feed: Found 0 active BTC markets
+20:38:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:32] "GET /api/state HTTP/1.1" 200 -
+20:38:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:37] "GET /api/state HTTP/1.1" 200 -
+20:38:41 [INFO] core.feed: Found 0 active BTC markets
+20:38:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:42] "GET /api/state HTTP/1.1" 200 -
+20:38:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:47] "GET /api/state HTTP/1.1" 200 -
+20:38:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:52] "GET /api/state HTTP/1.1" 200 -
+20:38:54 [INFO] core.feed: Found 0 active BTC markets
+20:38:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:38:57] "GET /api/state HTTP/1.1" 200 -
+20:39:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:02] "GET /api/state HTTP/1.1" 200 -
+20:39:07 [INFO] core.feed: Found 0 active BTC markets
+20:39:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:07] "GET /api/state HTTP/1.1" 200 -
+20:39:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:12] "GET /api/state HTTP/1.1" 200 -
+20:39:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:17] "GET /api/state HTTP/1.1" 200 -
+20:39:21 [INFO] core.feed: Found 0 active BTC markets
+20:39:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:22] "GET /api/state HTTP/1.1" 200 -
+20:39:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:27] "GET /api/state HTTP/1.1" 200 -
+20:39:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:32] "GET /api/state HTTP/1.1" 200 -
+20:39:33 [INFO] core.feed: Found 0 active BTC markets
+20:39:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:37] "GET /api/state HTTP/1.1" 200 -
+20:39:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:42] "GET /api/state HTTP/1.1" 200 -
+20:39:46 [INFO] core.feed: Found 0 active BTC markets
+20:39:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:47] "GET /api/state HTTP/1.1" 200 -
+20:39:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:52] "GET /api/state HTTP/1.1" 200 -
+20:39:57 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:39:57] "GET /api/state HTTP/1.1" 200 -
+20:39:59 [INFO] core.feed: Found 0 active BTC markets
+20:40:02 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:02] "GET /api/state HTTP/1.1" 200 -
+20:40:07 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:07] "GET /api/state HTTP/1.1" 200 -
+20:40:12 [INFO] core.feed: Found 0 active BTC markets
+20:40:12 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:12] "GET /api/state HTTP/1.1" 200 -
+20:40:17 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:17] "GET /api/state HTTP/1.1" 200 -
+20:40:22 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:22] "GET /api/state HTTP/1.1" 200 -
+20:40:25 [INFO] core.feed: Found 0 active BTC markets
+20:40:27 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:27] "GET /api/state HTTP/1.1" 200 -
+20:40:32 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:32] "GET /api/state HTTP/1.1" 200 -
+20:40:37 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:37] "GET /api/state HTTP/1.1" 200 -
+20:40:38 [INFO] core.feed: Found 0 active BTC markets
+20:40:42 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:42] "GET /api/state HTTP/1.1" 200 -
+20:40:47 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:47] "GET /api/state HTTP/1.1" 200 -
+20:40:51 [INFO] core.feed: Found 0 active BTC markets
+20:40:52 [INFO] werkzeug: 10.32.163.193 - - [17/Feb/2026 20:40:52] "GET /api/state HTTP/1.1" 200 -
+15:17:49 [INFO] main: ============================================================
+15:17:49 [INFO] main:   POLYMARKET BTC SIGNAL BOT
+15:17:49 [INFO] main:   Synced to Polymarket 5-minute market cycles
+15:17:49 [INFO] main:   Paper trading mode — signals only
+15:17:49 [INFO] main: ============================================================
+15:17:49 [INFO] core.feed: Connecting to Coinbase WebSocket...
+15:17:49 [INFO] core.feed: CoinbaseFeed started
+15:17:49 [INFO] core.feed: RestPoller started
+15:17:49 [INFO] web.dashboard: Dashboard running at http://localhost:5000
+15:17:49 [INFO] main: Waiting 15s for WebSocket to accumulate data...
+15:17:49 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.1.28.223:5000
+15:17:49 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+15:17:50 [INFO] websocket: Websocket connected
+15:17:50 [INFO] core.feed: WebSocket connected ✓
+15:18:04 [INFO] main: Watching Polymarket for new 5-minute markets...
+15:18:04 [INFO] main: Bot will fire ONE signal per market at market open.
+15:18:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:21] "GET / HTTP/1.1" 200 -
+15:18:25 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+15:18:25 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:25] "GET /api/state HTTP/1.1" 200 -
+15:18:30 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:30] "GET /api/state HTTP/1.1" 200 -
+15:18:35 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:35] "GET /api/state HTTP/1.1" 200 -
+15:18:40 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:40] "GET /api/state HTTP/1.1" 200 -
+15:18:45 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:45] "GET /api/state HTTP/1.1" 200 -
+15:18:50 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:50] "GET /api/state HTTP/1.1" 200 -
+15:18:55 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:18:55] "GET /api/state HTTP/1.1" 200 -
+15:19:00 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:00] "GET /api/state HTTP/1.1" 200 -
+15:19:05 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:05] "GET /api/state HTTP/1.1" 200 -
+15:19:10 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:10] "GET /api/state HTTP/1.1" 200 -
+15:19:15 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:15] "GET /api/state HTTP/1.1" 200 -
+15:19:20 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:20] "GET /api/state HTTP/1.1" 200 -
+15:19:25 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:25] "GET /api/state HTTP/1.1" 200 -
+15:19:30 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:30] "GET /api/state HTTP/1.1" 200 -
+15:19:35 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:35] "GET /api/state HTTP/1.1" 200 -
+15:19:40 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:40] "GET /api/state HTTP/1.1" 200 -
+15:19:45 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:45] "GET /api/state HTTP/1.1" 200 -
+15:19:50 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:50] "GET /api/state HTTP/1.1" 200 -
+15:19:55 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:19:55] "GET /api/state HTTP/1.1" 200 -
+15:20:00 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:00] "GET /api/state HTTP/1.1" 200 -
+15:20:05 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:05] "GET /api/state HTTP/1.1" 200 -
+15:20:10 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:10] "GET /api/state HTTP/1.1" 200 -
+15:20:15 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:15] "GET /api/state HTTP/1.1" 200 -
+15:20:20 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:20] "GET /api/state HTTP/1.1" 200 -
+15:20:25 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:25] "GET /api/state HTTP/1.1" 200 -
+15:20:30 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:30] "GET /api/state HTTP/1.1" 200 -
+15:20:35 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:35] "GET /api/state HTTP/1.1" 200 -
+15:20:40 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:40] "GET /api/state HTTP/1.1" 200 -
+15:20:45 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:45] "GET /api/state HTTP/1.1" 200 -
+15:20:50 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:50] "GET /api/state HTTP/1.1" 200 -
+15:20:55 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:20:55] "GET /api/state HTTP/1.1" 200 -
+15:21:00 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:00] "GET /api/state HTTP/1.1" 200 -
+15:21:05 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:05] "GET /api/state HTTP/1.1" 200 -
+15:21:10 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:10] "GET /api/state HTTP/1.1" 200 -
+15:21:15 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:15] "GET /api/state HTTP/1.1" 200 -
+15:21:20 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:20] "GET /api/state HTTP/1.1" 200 -
+15:21:25 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:25] "GET /api/state HTTP/1.1" 200 -
+15:21:30 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:30] "GET /api/state HTTP/1.1" 200 -
+15:21:35 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:35] "GET /api/state HTTP/1.1" 200 -
+15:21:40 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:40] "GET /api/state HTTP/1.1" 200 -
+15:21:45 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:45] "GET /api/state HTTP/1.1" 200 -
+15:21:50 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:50] "GET /api/state HTTP/1.1" 200 -
+15:21:55 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:21:55] "GET /api/state HTTP/1.1" 200 -
+15:22:00 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:00] "GET /api/state HTTP/1.1" 200 -
+15:22:05 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:05] "GET /api/state HTTP/1.1" 200 -
+15:22:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:11] "GET /api/state HTTP/1.1" 200 -
+15:22:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:16] "GET /api/state HTTP/1.1" 200 -
+15:22:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:21] "GET /api/state HTTP/1.1" 200 -
+15:22:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:26] "GET /api/state HTTP/1.1" 200 -
+15:22:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:31] "GET /api/state HTTP/1.1" 200 -
+15:22:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:36] "GET /api/state HTTP/1.1" 200 -
+15:22:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:41] "GET /api/state HTTP/1.1" 200 -
+15:22:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:46] "GET /api/state HTTP/1.1" 200 -
+15:22:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:51] "GET /api/state HTTP/1.1" 200 -
+15:22:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:22:56] "GET /api/state HTTP/1.1" 200 -
+15:23:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:01] "GET /api/state HTTP/1.1" 200 -
+15:23:06 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:06] "GET /api/state HTTP/1.1" 200 -
+15:23:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:11] "GET /api/state HTTP/1.1" 200 -
+15:23:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:16] "GET /api/state HTTP/1.1" 200 -
+15:23:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:21] "GET /api/state HTTP/1.1" 200 -
+15:23:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:26] "GET /api/state HTTP/1.1" 200 -
+15:23:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:31] "GET /api/state HTTP/1.1" 200 -
+15:23:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:36] "GET /api/state HTTP/1.1" 200 -
+15:23:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:41] "GET /api/state HTTP/1.1" 200 -
+15:23:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:46] "GET /api/state HTTP/1.1" 200 -
+15:23:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:51] "GET /api/state HTTP/1.1" 200 -
+15:23:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:23:56] "GET /api/state HTTP/1.1" 200 -
+15:24:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:01] "GET /api/state HTTP/1.1" 200 -
+15:24:06 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:06] "GET /api/state HTTP/1.1" 200 -
+15:24:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:11] "GET /api/state HTTP/1.1" 200 -
+15:24:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:16] "GET /api/state HTTP/1.1" 200 -
+15:24:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:21] "GET /api/state HTTP/1.1" 200 -
+15:24:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:26] "GET /api/state HTTP/1.1" 200 -
+15:24:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:31] "GET /api/state HTTP/1.1" 200 -
+15:24:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:36] "GET /api/state HTTP/1.1" 200 -
+15:24:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:41] "GET /api/state HTTP/1.1" 200 -
+15:24:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:46] "GET /api/state HTTP/1.1" 200 -
+15:24:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:51] "GET /api/state HTTP/1.1" 200 -
+15:24:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:24:56] "GET /api/state HTTP/1.1" 200 -
+15:25:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:01] "GET /api/state HTTP/1.1" 200 -
+15:25:06 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:06] "GET /api/state HTTP/1.1" 200 -
+15:25:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:11] "GET /api/state HTTP/1.1" 200 -
+15:25:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:16] "GET /api/state HTTP/1.1" 200 -
+15:25:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:21] "GET /api/state HTTP/1.1" 200 -
+15:25:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:26] "GET /api/state HTTP/1.1" 200 -
+15:25:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:31] "GET /api/state HTTP/1.1" 200 -
+15:25:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:36] "GET /api/state HTTP/1.1" 200 -
+15:25:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:41] "GET /api/state HTTP/1.1" 200 -
+15:25:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:46] "GET /api/state HTTP/1.1" 200 -
+15:25:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:51] "GET /api/state HTTP/1.1" 200 -
+15:25:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:25:56] "GET /api/state HTTP/1.1" 200 -
+15:26:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:01] "GET /api/state HTTP/1.1" 200 -
+15:26:06 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:06] "GET /api/state HTTP/1.1" 200 -
+15:26:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:11] "GET /api/state HTTP/1.1" 200 -
+15:26:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:16] "GET /api/state HTTP/1.1" 200 -
+15:26:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:21] "GET /api/state HTTP/1.1" 200 -
+15:26:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:26] "GET /api/state HTTP/1.1" 200 -
+15:26:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:31] "GET /api/state HTTP/1.1" 200 -
+15:26:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:36] "GET /api/state HTTP/1.1" 200 -
+15:26:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:41] "GET /api/state HTTP/1.1" 200 -
+15:26:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:46] "GET /api/state HTTP/1.1" 200 -
+15:26:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:51] "GET /api/state HTTP/1.1" 200 -
+15:26:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:26:56] "GET /api/state HTTP/1.1" 200 -
+15:27:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:01] "GET /api/state HTTP/1.1" 200 -
+15:27:06 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:06] "GET /api/state HTTP/1.1" 200 -
+15:27:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:11] "GET /api/state HTTP/1.1" 200 -
+15:27:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:16] "GET /api/state HTTP/1.1" 200 -
+15:27:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:21] "GET /api/state HTTP/1.1" 200 -
+15:27:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:26] "GET /api/state HTTP/1.1" 200 -
+15:27:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:31] "GET /api/state HTTP/1.1" 200 -
+15:27:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:27:36] "GET /api/state HTTP/1.1" 200 -
+15:30:06 [INFO] main: ============================================================
+15:30:06 [INFO] main:   POLYMARKET BTC SIGNAL BOT
+15:30:06 [INFO] main:   Synced to Polymarket 5-minute market cycles
+15:30:06 [INFO] main:   Paper trading mode — signals only
+15:30:06 [INFO] main: ============================================================
+15:30:06 [INFO] core.feed: Connecting to Coinbase WebSocket...
+15:30:06 [INFO] core.feed: CoinbaseFeed started
+15:30:06 [INFO] core.feed: RestPoller started
+15:30:06 [INFO] web.dashboard: Dashboard running at http://localhost:5000
+15:30:06 [INFO] main: Waiting 15s for WebSocket to accumulate data...
+15:30:07 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.1.28.223:5000
+15:30:07 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+15:30:08 [INFO] websocket: Websocket connected
+15:30:08 [INFO] core.feed: WebSocket connected ✓
+15:30:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:11] "GET /api/state HTTP/1.1" 200 -
+15:30:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:16] "GET /api/state HTTP/1.1" 200 -
+15:30:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:21] "GET /api/state HTTP/1.1" 200 -
+15:30:21 [INFO] main: Watching Polymarket for new 5-minute markets...
+15:30:21 [INFO] main: Bot will fire ONE signal per market at market open.
+15:30:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:26] "GET /api/state HTTP/1.1" 200 -
+15:30:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:31] "GET /api/state HTTP/1.1" 200 -
+15:30:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:36] "GET /api/state HTTP/1.1" 200 -
+15:30:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:41] "GET /api/state HTTP/1.1" 200 -
+15:30:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:46] "GET /api/state HTTP/1.1" 200 -
+15:30:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:51] "GET /api/state HTTP/1.1" 200 -
+15:30:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:51] "GET / HTTP/1.1" 200 -
+15:30:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:51] "GET /api/state HTTP/1.1" 200 -
+15:30:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:51] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+15:30:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:30:56] "GET /api/state HTTP/1.1" 200 -
+15:31:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:01] "GET /api/state HTTP/1.1" 200 -
+15:31:06 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:06] "GET /api/state HTTP/1.1" 200 -
+15:31:11 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:11] "GET /api/state HTTP/1.1" 200 -
+15:31:16 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:16] "GET /api/state HTTP/1.1" 200 -
+15:31:21 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:21] "GET /api/state HTTP/1.1" 200 -
+15:31:26 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:26] "GET /api/state HTTP/1.1" 200 -
+15:31:31 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:31] "GET /api/state HTTP/1.1" 200 -
+15:31:36 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:36] "GET /api/state HTTP/1.1" 200 -
+15:31:41 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:41] "GET /api/state HTTP/1.1" 200 -
+15:31:46 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:46] "GET /api/state HTTP/1.1" 200 -
+15:31:51 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:51] "GET /api/state HTTP/1.1" 200 -
+15:31:56 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:31:56] "GET /api/state HTTP/1.1" 200 -
+15:32:01 [INFO] werkzeug: 127.0.0.1 - - [19/Feb/2026 15:32:01] "GET /api/state HTTP/1.1" 200 -

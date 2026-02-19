@@ -399,33 +399,25 @@ class SignalEngine:
         # 2. Compute weighted sum of scores
         total_weight = sum(s.weight for s in raw_signals)
         if total_weight < 0.01:
-            return Prediction(0.5, market_implied, 0.0, "NoEdge", 0.5, raw_signals)
-
-        weighted_sum = sum(s.weighted_score for s in raw_signals)
-        normalised   = weighted_sum / total_weight  # -1 to +1
-
-        # 3. Convert to probability using sigmoid
-        # Scale factor of 3: a normalised score of 0.5 → prob of ~0.82
-        # This feels aggressive but 5-min markets are high variance
-        prob_up = _sigmoid(normalised * 3.0)
-
-        # 4. Calculate edge vs Polymarket
-        edge_up   = prob_up - market_implied
-        edge_down = (1 - prob_up) - (1 - market_implied)
-
-        # 5. Determine direction and confidence
-        if edge_up > config.MIN_EDGE and prob_up >= config.MIN_CONFIDENCE:
-            direction   = "Up"
-            edge        = edge_up
-            confidence  = prob_up
-        elif edge_down > config.MIN_EDGE and (1 - prob_up) >= config.MIN_CONFIDENCE:
-            direction   = "Down"
-            edge        = edge_down
-            confidence  = 1 - prob_up
+            # No signals available, default to neutral
+            prob_up = 0.50
         else:
-            direction   = "NoEdge"
-            edge        = max(edge_up, edge_down)
-            confidence  = max(prob_up, 1 - prob_up)
+            weighted_sum = sum(s.weighted_score for s in raw_signals)
+            normalised   = weighted_sum / total_weight  # -1 to +1
+
+            # Convert to probability using sigmoid
+            prob_up = _sigmoid(normalised * 3.0)
+
+        # 3. Determine direction (simple: >50% = Up, else Down)
+        if prob_up >= 0.50:
+            direction   = "Up"
+            confidence  = prob_up
+        else:
+            direction   = "Down"
+            confidence  = 1 - prob_up
+
+        # Edge is difference from market (but we're not filtering on it anymore)
+        edge = abs(prob_up - market_implied)
 
         return Prediction(
             prob_up        = prob_up,

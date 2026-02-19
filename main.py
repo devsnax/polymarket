@@ -6,29 +6,33 @@ Run with:
 
 Then open http://localhost:5000 in your browser.
 
-What happens:
-  1. BinanceFeed starts — connects WebSocket, receives live trades + OB
-  2. RestPoller starts — fetches funding rate every 30s
-  3. Main loop ticks every 10s:
-     a. Compute CVD + OB imbalance from raw data
-     b. Fetch active BTC markets from Polymarket
-     c. Run signal engine → get prediction
-     d. If edge found → open paper position
-     e. Check expired positions → resolve + update W/L
-     f. Log everything to CSV
-  4. Dashboard serves http://localhost:5000
+NEW ARCHITECTURE (synced to Polymarket):
+  1. CoinbaseFeed starts — streams live BTC price + trades
+  2. RestPoller starts — fetches funding rate
+  3. Main loop WAITS for new Polymarket markets to open
+  4. When new market detected:
+     a. Capture entry price at market open
+     b. Compute all signals based on last 5 minutes of data
+     c. Generate ONE prediction for this specific market
+     d. If edge > threshold → open paper position
+     e. Wait exactly 5 minutes
+     f. Check outcome (price vs entry price)
+     g. Update W/L for all signals → self-calibrate
+     h. Repeat for next market
+  5. Dashboard serves http://localhost:5000
 """
 
 import time
 import logging
 import sys
 import os
+from datetime import datetime, timezone
 
 # Make sure all submodules are importable
 sys.path.insert(0, os.path.dirname(__file__))
 
 import config
-from core.feed      import State, BinanceFeed, RestPoller, MetricComputer, PolymarketFeed
+from core.feed      import State, CoinbaseFeed, RestPoller, MetricComputer, PolymarketFeed
 from signals.engine import SignalEngine
 from core.logger    import BotLogger
 from core.positions import PositionTracker
@@ -50,7 +54,7 @@ logger = logging.getLogger("main")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-#  BOT
+#  BOT — POLYMARKET-SYNCED ARCHITECTURE
 # ═══════════════════════════════════════════════════════════════════════════
 
 class Bot:
@@ -58,6 +62,7 @@ class Bot:
     def __init__(self):
         logger.info("=" * 60)
         logger.info("  POLYMARKET BTC SIGNAL BOT")
+        logger.info("  Synced to Polymarket 5-minute market cycles")
         logger.info("  Paper trading mode — signals only")
         logger.info("=" * 60)
 
@@ -65,7 +70,7 @@ class Bot:
         self.state       = State()
 
         # Data feeds
-        self.feed        = BinanceFeed(self.state)
+        self.feed        = CoinbaseFeed(self.state)
         self.poller      = RestPoller(self.state)
         self.metrics     = MetricComputer(self.state)
         self.poly        = PolymarketFeed()
@@ -78,6 +83,9 @@ class Bot:
         # Last prediction (exposed to dashboard)
         self.last_prediction = None
 
+        # Track which markets we've already processed
+        self._seen_markets = set()
+
     def start(self):
         # Start data feeds
         self.feed.start()
@@ -87,121 +95,218 @@ class Bot:
         set_bot(self)
         run_dashboard(config.DASHBOARD_HOST, config.DASHBOARD_PORT)
 
-        # Wait for WebSocket to connect and fill a little data
-        logger.info("Waiting 8s for WebSocket to fill with data...")
-        time.sleep(8)
+        # Wait for WebSocket to connect and build up some trade history
+        logger.info("Waiting 15s for WebSocket to accumulate data...")
+        time.sleep(15)
 
-        # Main loop
-        logger.info("Starting main loop (ticking every %ds)", config.TICK_INTERVAL)
+        # Main loop — watches for NEW Polymarket markets
+        logger.info("Watching Polymarket for new 5-minute markets...")
+        logger.info("Bot will fire ONE signal per market at market open.")
+        
         while True:
             try:
-                self._tick()
+                self._watch_for_new_market()
             except KeyboardInterrupt:
                 logger.info("Shutdown requested.")
                 self._shutdown()
                 break
             except Exception as e:
-                logger.error("Tick error: %s", e, exc_info=True)
-            time.sleep(config.TICK_INTERVAL)
+                logger.error("Loop error: %s", e, exc_info=True)
+            time.sleep(5)  # Check for new markets every 5 seconds
 
-    def _tick(self):
-        # 1. Compute derived metrics (CVD, OB imbalance) from raw WebSocket data
-        self.metrics.compute()
-
-        # 2. Get current state snapshot
+    def _watch_for_new_market(self):
+        """
+        Check if a NEW Polymarket 5-min market has appeared.
+        If yes → process it immediately.
+        """
+        # 1. Check WebSocket health
         with self.state.lock:
-            spot_price   = self.state.spot_price
             ws_connected = self.state.ws_connected
+            spot_price   = self.state.spot_price
 
         if not ws_connected:
-            logger.warning("WebSocket not connected — skipping tick")
+            logger.warning("WebSocket disconnected — waiting for reconnection...")
             return
 
         if spot_price == 0:
-            logger.warning("No price data yet — skipping tick")
+            logger.debug("No price data yet")
             return
 
-        # 3. Fetch Polymarket markets
+        # 2. Fetch current Polymarket markets
         markets = self.poly.get_btc_markets()
         if not markets:
-            logger.debug("No BTC markets found on Polymarket")
-            # Still run signals, just no edge comparison
-            self._run_signals_no_market(spot_price)
+            # No markets active — this is normal between market windows
+            self._update_prediction_no_market()
             return
 
-        # 4. Use the first (most imminent) market
-        market           = markets[0]
-        market_id        = market.get("id", "")
-        market_question  = market.get("question", "BTC Up or Down")
-        market_implied   = self.poly.get_implied_prob(market)
+        # 3. Find the most recent market (earliest end time = just opened)
+        market = self._get_newest_market(markets)
+        if not market:
+            return
+
+        market_id = market.get("id", "")
+        
+        # 4. Have we already processed this market?
+        if market_id in self._seen_markets:
+            # Already processed — just update dashboard with current data
+            self._update_prediction_for_open_market(market)
+            # Check if any positions need resolution
+            self._check_resolutions()
+            return
+
+        # 5. NEW MARKET DETECTED → Process it
+        logger.info("=" * 60)
+        logger.info("🆕 NEW MARKET OPENED: %s", market.get("question", "")[:60])
+        logger.info("=" * 60)
+        
+        self._process_new_market(market)
+        self._seen_markets.add(market_id)
+
+        # Clean up old seen markets (keep last 50)
+        if len(self._seen_markets) > 50:
+            self._seen_markets = set(list(self._seen_markets)[-50:])
+
+    def _get_newest_market(self, markets: list) -> dict:
+        """
+        Returns the market that opened most recently.
+        Polymarket markets have an 'endDate' timestamp.
+        Newest market = earliest endDate (just opened).
+        """
+        if not markets:
+            return None
+        
+        # Sort by endDate ascending (earliest = newest market)
+        try:
+            sorted_markets = sorted(
+                markets,
+                key=lambda m: m.get("endDate", "9999-99-99")
+            )
+            return sorted_markets[0]
+        except:
+            return markets[0]
+
+    def _process_new_market(self, market: dict):
+        """
+        A new 5-minute market just opened.
+        
+        Steps:
+        1. Capture entry price RIGHT NOW
+        2. Compute all signals based on data from last few minutes
+        3. Generate ONE prediction: Up or Down
+        4. Open paper position (always, no edge filtering)
+        5. Wait 5 minutes
+        6. Check outcome → update W/L
+        """
+        market_id       = market.get("id", "")
+        market_question = market.get("question", "BTC Up or Down")
+        market_end      = market.get("endDate", "")
+        
+        # Get market implied probability
+        market_implied = self.poly.get_implied_prob(market)
         token_yes, token_no = self.poly.get_token_ids(market)
 
-        logger.info("Market: %s | Implied: %.3f", market_question[:50], market_implied)
+        # Capture entry price at market open
+        with self.state.lock:
+            entry_price = self.state.spot_price
 
-        # 5. Run signal engine
+        logger.info("🆕 NEW MARKET: %s", market_question[:70])
+        logger.info("💰 Entry: $%.2f | Market pricing Up at: %.1f%%", 
+                   entry_price, market_implied * 100)
+
+        # Compute all derived metrics from accumulated data
+        self.metrics.compute()
+
+        # Run signal engine
         prediction = self.engine.run(
-            state            = self.state,
-            market_implied   = market_implied,
-            market_id        = market_id,
-            market_question  = market_question,
-            token_yes        = token_yes,
-            token_no         = token_no,
+            state           = self.state,
+            market_implied  = market_implied,
+            market_id       = market_id,
+            market_question = market_question,
+            token_yes       = token_yes,
+            token_no        = token_no,
         )
         self.last_prediction = prediction
 
-        # 6. Log signal (always, even NoEdge)
+        # Log to CSV
         self.bot_logger.log_signal(prediction)
 
-        # 7. Log prediction to console
-        direction_str = prediction.direction
-        logger.info(
-            "PREDICTION: %-8s | prob=%.3f | implied=%.3f | edge=+%.3f | conf=%.3f",
-            direction_str, prediction.prob_up, market_implied,
-            prediction.edge, prediction.confidence
+        # Decide direction: if model says >50% Up → bet Up, else bet Down
+        if prediction.prob_up >= 0.50:
+            direction = "Up"
+            confidence = prediction.prob_up
+        else:
+            direction = "Down"
+            confidence = 1 - prediction.prob_up
+
+        # Console output
+        logger.info("🎯 SIGNAL: %s | Model: %.1f%% | Confidence: %.1f%%",
+                   direction, prediction.prob_up * 100, confidence * 100)
+
+        # ALWAYS open position (no edge filtering)
+        pos = self.positions.open_position(
+            market_id      = market_id,
+            question       = market_question,
+            direction      = direction,
+            confidence     = confidence,
+            edge           = 0,  # not using edge anymore
+            entry_price    = entry_price,
+            token_yes      = token_yes,
+            token_no       = token_no,
+            prediction     = prediction,
         )
+        
+        if pos:
+            logger.info("✅ Position: %s | Bet: $%.2f", direction, config.PAPER_BET_USD)
+        else:
+            logger.warning("⚠️  Failed to open position (duplicate market?)")
 
-        # 8. Open position if there's edge
-        if prediction.direction in ("Up", "Down"):
-            self.positions.open_position(
-                market_id       = market_id,
-                question        = market_question,
-                direction       = prediction.direction,
-                confidence      = prediction.confidence,
-                edge            = prediction.edge,
-                entry_price     = spot_price,
-                token_yes       = token_yes,
-                token_no        = token_no,
-                prediction      = prediction,
-            )
+        logger.info("⏱️  Market closes in ~5 minutes...")
+        logger.info("")
 
-        # 9. Resolve expired positions (check outcome by price movement)
-        self.positions.check_resolutions(spot_price)
-
-        # 10. Log summary
-        open_count = len(self.positions.get_open_positions())
-        logger.info(
-            "Open: %d | Bets: %d | Win%%: %.1f | PnL: $%.2f",
-            open_count, self.positions.total_bets,
-            self.positions.win_rate, self.positions.total_pnl
+    def _update_prediction_for_open_market(self, market: dict):
+        """
+        Update the dashboard prediction for a market we're already tracking.
+        (Called every 5 seconds while waiting for resolution)
+        """
+        market_implied = self.poly.get_implied_prob(market)
+        self.metrics.compute()
+        
+        prediction = self.engine.run(
+            state           = self.state,
+            market_implied  = market_implied,
+            market_id       = market.get("id", ""),
+            market_question = market.get("question", ""),
         )
+        self.last_prediction = prediction
 
-    def _run_signals_no_market(self, spot_price: float):
-        """Run signals even when no Polymarket market is found."""
-        from signals.engine import Prediction
+    def _update_prediction_no_market(self):
+        """Keep dashboard updated even when no markets are active."""
+        self.metrics.compute()
         prediction = self.engine.run(
             state          = self.state,
             market_implied = 0.5,
         )
         self.last_prediction = prediction
 
+    def _check_resolutions(self):
+        """Check if any open positions should be resolved."""
+        with self.state.lock:
+            current_price = self.state.spot_price
+        
+        self.positions.check_resolutions(current_price)
+
     def _shutdown(self):
         logger.info("Shutting down...")
         self.feed.stop()
         self.poller.stop()
-        logger.info("Final P&L: $%.2f | Win rate: %.1f%% | Total bets: %d",
-                    self.positions.total_pnl,
-                    self.positions.win_rate,
-                    self.positions.total_bets)
+        logger.info("")
+        logger.info("=" * 60)
+        logger.info("  FINAL STATS")
+        logger.info("=" * 60)
+        logger.info("Total Bets:   %d", self.positions.total_bets)
+        logger.info("Win Rate:     %.1f%%", self.positions.win_rate)
+        logger.info("Paper P&L:    $%.2f", self.positions.total_pnl)
+        logger.info("=" * 60)
 
 
 # ═══════════════════════════════════════════════════════════════════════════

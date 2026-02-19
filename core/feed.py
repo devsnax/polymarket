@@ -1,12 +1,11 @@
 """
 core/feed.py — Real-time data engine.
 
-Subscribes to three Binance WebSocket streams simultaneously:
-  1. Trade stream  → every individual trade (aggressor buy/sell)
-  2. Book ticker   → best bid/ask updated on every change
-  3. Depth stream  → top 20 levels of orderbook
+Subscribes to Coinbase WebSocket (no geo-restrictions):
+  1. Matches channel  → every individual trade (aggressor buy/sell)
+  2. Level2 channel   → full orderbook snapshots + updates
 
-Also polls REST for funding rate + perp basis every 30s.
+Also polls REST for 24h stats (volume, price change).
 
 Everything is stored in shared state (State class) that the
 signal engine reads from.
@@ -69,12 +68,12 @@ class State:
     # OB imbalance per depth: {5: float, 10: float, 20: float}
     ob_imbalance: dict = field(default_factory=dict)
 
-    # ── Perp / funding (from REST poll) ──────────────────────────────────
-    funding_rate:  float = 0.0   # current funding rate
-    funding_delta: float = 0.0   # change since last poll
-    perp_price:    float = 0.0   # BTC perpetual price
+    # ── 24h stats (from REST poll) ────────────────────────────────────────
+    funding_rate:  float = 0.0   # Not available on Coinbase spot — always 0
+    funding_delta: float = 0.0   # Not available
+    perp_price:    float = 0.0   # Not available (no perp on Coinbase spot)
     spot_price:    float = 0.0   # BTC spot price
-    perp_basis:    float = 0.0   # (perp - spot) / spot
+    perp_basis:    float = 0.0   # Not available
 
     # ── Connection health ─────────────────────────────────────────────────
     ws_connected:  bool  = False
@@ -87,12 +86,13 @@ class State:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-#  WEBSOCKET FEED
+#  WEBSOCKET FEED (Coinbase)
 # ═══════════════════════════════════════════════════════════════════════════
 
-class BinanceFeed:
+class CoinbaseFeed:
     """
-    Connects to Binance combined WebSocket stream.
+    Connects to Coinbase WebSocket.
+    Subscribes to matches (trades) and level2 (orderbook).
     Runs in a background thread — call .start() and forget it.
     """
 
@@ -103,31 +103,21 @@ class BinanceFeed:
         self._stop  = threading.Event()
 
     def start(self):
-        self._thread = threading.Thread(target=self._run, daemon=True, name="BinanceFeed")
+        self._thread = threading.Thread(target=self._run, daemon=True, name="CoinbaseFeed")
         self._thread.start()
-        logger.info("BinanceFeed started")
+        logger.info("CoinbaseFeed started")
 
     def stop(self):
         self._stop.set()
         if self._ws:
             self._ws.close()
 
-    def _build_url(self) -> str:
-        sym = config.SYMBOL
-        streams = [
-            f"{sym}@aggTrade",          # individual trades
-            f"{sym}@bookTicker",        # best bid/ask
-            f"{sym}@depth20@100ms",     # top 20 OB levels
-        ]
-        return f"{config.BINANCE_WS_URL}?streams={'/'.join(streams)}"
-
     def _run(self):
         while not self._stop.is_set():
             try:
-                url = self._build_url()
-                logger.info("Connecting to %s", url[:60] + "...")
+                logger.info("Connecting to Coinbase WebSocket...")
                 self._ws = websocket.WebSocketApp(
-                    url,
+                    config.COINBASE_WS_URL,
                     on_open    = self._on_open,
                     on_message = self._on_message,
                     on_error   = self._on_error,
@@ -141,6 +131,13 @@ class BinanceFeed:
                 time.sleep(3)
 
     def _on_open(self, ws):
+        # Subscribe to matches (trades) and level2 (orderbook)
+        subscribe = {
+            "type": "subscribe",
+            "product_ids": [config.SYMBOL],
+            "channels": ["matches", "level2"]
+        }
+        ws.send(json.dumps(subscribe))
         with self.state.lock:
             self.state.ws_connected = True
         logger.info("WebSocket connected ✓")
@@ -155,65 +152,106 @@ class BinanceFeed:
 
     def _on_message(self, ws, raw: str):
         try:
-            msg    = json.loads(raw)
-            stream = msg.get("stream", "")
-            data   = msg.get("data", {})
+            msg = json.loads(raw)
+            msg_type = msg.get("type")
 
-            if "aggTrade" in stream:
-                self._handle_trade(data)
-            elif "bookTicker" in stream:
-                self._handle_ticker(data)
-            elif "depth" in stream:
-                self._handle_depth(data)
+            if msg_type == "match" or msg_type == "last_match":
+                self._handle_trade(msg)
+            elif msg_type == "snapshot":
+                self._handle_snapshot(msg)
+            elif msg_type == "l2update":
+                self._handle_l2update(msg)
         except Exception as e:
             logger.debug("Message parse error: %s", e)
 
     def _handle_trade(self, d: dict):
         """
-        aggTrade message:
-          p = price, q = qty, m = true if seller was maker
-          (m=True means the buyer was aggressor → market buy)
+        match message:
+          price, size, side (buy/sell from taker perspective)
+          side='buy' means taker bought (aggressor buy)
         """
-        trade = Trade(
-            price    = float(d["p"]),
-            qty      = float(d["q"]),
-            is_buyer = not bool(d["m"]),   # m=True → seller maker → buyer aggressor
-            timestamp= time.time(),
-        )
-        with self.state.lock:
-            self.state.trades.append(trade)
-            self.state.spot_price  = trade.price
-            self.state.last_trade_ts = trade.timestamp
+        try:
+            trade = Trade(
+                price    = float(d["price"]),
+                qty      = float(d["size"]),
+                is_buyer = d["side"] == "buy",
+                timestamp= time.time(),
+            )
+            with self.state.lock:
+                self.state.trades.append(trade)
+                self.state.spot_price  = trade.price
+                self.state.last_trade_ts = trade.timestamp
+        except:
+            pass
 
-    def _handle_ticker(self, d: dict):
-        with self.state.lock:
-            self.state.best_bid = float(d["b"])
-            self.state.best_ask = float(d["a"])
+    def _handle_snapshot(self, d: dict):
+        """Initial orderbook snapshot"""
+        try:
+            bids = [(float(p), float(q)) for p, q in d.get("bids", [])]
+            asks = [(float(p), float(q)) for p, q in d.get("asks", [])]
+            with self.state.lock:
+                self.state.bids = sorted(bids, key=lambda x: -x[0])[:20]
+                self.state.asks = sorted(asks, key=lambda x:  x[0])[:20]
+                if self.state.bids:
+                    self.state.best_bid = self.state.bids[0][0]
+                if self.state.asks:
+                    self.state.best_ask = self.state.asks[0][0]
+        except:
+            pass
 
-    def _handle_depth(self, d: dict):
-        bids = [(float(p), float(q)) for p, q in d.get("bids", [])]
-        asks = [(float(p), float(q)) for p, q in d.get("asks", [])]
-        with self.state.lock:
-            self.state.bids = sorted(bids, key=lambda x: -x[0])  # highest first
-            self.state.asks = sorted(asks, key=lambda x:  x[0])  # lowest first
+    def _handle_l2update(self, d: dict):
+        """Incremental orderbook updates"""
+        try:
+            changes = d.get("changes", [])
+            with self.state.lock:
+                for side, price_str, size_str in changes:
+                    price = float(price_str)
+                    size  = float(size_str)
+                    
+                    if side == "buy":
+                        # Update bids
+                        if size == 0:
+                            self.state.bids = [(p, q) for p, q in self.state.bids if p != price]
+                        else:
+                            # Remove old, insert new
+                            self.state.bids = [(p, q) for p, q in self.state.bids if p != price]
+                            self.state.bids.append((price, size))
+                            self.state.bids = sorted(self.state.bids, key=lambda x: -x[0])[:20]
+                    else:  # sell
+                        if size == 0:
+                            self.state.asks = [(p, q) for p, q in self.state.asks if p != price]
+                        else:
+                            self.state.asks = [(p, q) for p, q in self.state.asks if p != price]
+                            self.state.asks.append((price, size))
+                            self.state.asks = sorted(self.state.asks, key=lambda x: x[0])[:20]
+                
+                if self.state.bids:
+                    self.state.best_bid = self.state.bids[0][0]
+                if self.state.asks:
+                    self.state.best_ask = self.state.asks[0][0]
+        except:
+            pass
+
+
+# Alias for backward compatibility
+BinanceFeed = CoinbaseFeed
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-#  REST POLLER  (funding rate + perp price)
+#  REST POLLER  (24h stats from Coinbase)
 # ═══════════════════════════════════════════════════════════════════════════
 
 class RestPoller:
     """
-    Polls Binance REST every 30 seconds for:
-      - Perpetual funding rate
-      - Perpetual price (for basis calculation)
+    Polls Coinbase REST every 60 seconds for 24h stats.
+    NOTE: Coinbase spot doesn't have funding rate or perp basis.
+    Those signals will always be 0 / neutral.
     """
 
     def __init__(self, state: State):
         self.state   = state
         self._thread = None
         self._stop   = threading.Event()
-        self._last_funding = 0.0
 
     def start(self):
         self._thread = threading.Thread(target=self._run, daemon=True, name="RestPoller")
@@ -226,34 +264,24 @@ class RestPoller:
     def _run(self):
         while not self._stop.is_set():
             try:
-                self._fetch_funding()
+                self._fetch_stats()
             except Exception as e:
                 logger.warning("REST poll failed: %s", e)
-            self._stop.wait(config.FUNDING_INTERVAL)
+            self._stop.wait(60)  # Poll less often since no funding to track
 
-    def _fetch_funding(self):
-        # Funding rate
-        resp = requests.get(
-            f"{config.BINANCE_REST_URL}/fapi/v1/premiumIndex",
-            params={"symbol": config.SYMBOL_UP},
-            timeout=8,
-        )
-        if resp.ok:
-            d = resp.json()
-            new_funding  = float(d.get("lastFundingRate", 0))
-            perp_price   = float(d.get("markPrice", 0))
-
-            with self.state.lock:
-                self.state.funding_delta = new_funding - self.state.funding_rate
-                self.state.funding_rate  = new_funding
-                self.state.perp_price    = perp_price
-                spot = self.state.spot_price
-                if spot > 0:
-                    self.state.perp_basis = (perp_price - spot) / spot
-
-            logger.debug("Funding: %.6f  Perp: %.2f  Basis: %.6f",
-                         new_funding, perp_price,
-                         (perp_price - self.state.spot_price) / (self.state.spot_price or 1))
+    def _fetch_stats(self):
+        # Get 24h stats
+        try:
+            resp = requests.get(
+                f"{config.COINBASE_REST_URL}/products/{config.SYMBOL}/stats",
+                timeout=8,
+            )
+            if resp.ok:
+                d = resp.json()
+                # Just log it for now
+                logger.debug("24h stats: volume=%s", d.get("volume"))
+        except:
+            pass
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -319,13 +347,14 @@ class MetricComputer:
 class PolymarketFeed:
     """
     Fetches active BTC 5-min markets and their implied probabilities.
-    Cached for 30 seconds to avoid hammering the API.
+    Cached for 10 seconds (markets refresh frequently).
     """
 
     def __init__(self):
         self._cache     = []
         self._cache_ts  = 0.0
-        self._cache_ttl = 30   # seconds
+        self._cache_ttl = 10   # seconds (more frequent checks)
+        self._last_market_count = 0
 
     def get_btc_markets(self) -> list[dict]:
         now = time.time()
@@ -345,11 +374,21 @@ class PolymarketFeed:
                 m for m in all_markets
                 if isinstance(m, dict)
                 and "bitcoin" in m.get("question", "").lower()
-                and "up or down" in m.get("question", "").lower()
+                and ("up or down" in m.get("question", "").lower()
+                     or "higher or lower" in m.get("question", "").lower()
+                     or "btc" in m.get("question", "").lower())
             ]
+            
+            # Log market count changes (helps debug market windows)
+            if len(btc) != self._last_market_count:
+                if len(btc) > self._last_market_count:
+                    logger.info("📈 New BTC markets appeared: %d active", len(btc))
+                elif len(btc) < self._last_market_count:
+                    logger.info("📉 Markets closed: %d remaining", len(btc))
+                self._last_market_count = len(btc)
+            
             self._cache    = btc
             self._cache_ts = now
-            logger.info("Found %d active BTC markets", len(btc))
             return btc
         except Exception as e:
             logger.warning("Polymarket fetch failed: %s", e)

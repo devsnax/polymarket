@@ -4,10 +4,11 @@ Change things here, nowhere else.
 """
 
 # ── Price feed ────────────────────────────────────────────────────────────
-BINANCE_WS_URL    = "wss://stream.binance.com:9443/stream"
-BINANCE_REST_URL  = "https://api.binance.com"
-SYMBOL            = "btcusdt"          # lowercase for WebSocket
-SYMBOL_UP         = "BTCUSDT"          # uppercase for REST
+# Using Coinbase (no geo-restrictions, unlike Binance)
+COINBASE_WS_URL   = "wss://ws-feed.exchange.coinbase.com"
+COINBASE_REST_URL = "https://api.exchange.coinbase.com"
+SYMBOL            = "BTC-USD"          # Coinbase format
+SYMBOL_UP         = "BTC-USD"          # same for REST
 
 # ── Polymarket ────────────────────────────────────────────────────────────
 GAMMA_URL         = "https://gamma-api.polymarket.com"
